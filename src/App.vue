@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!------------------------------Header---------------------------------->
+    <!------------------------------Bloc Header---------------------------------->
     <header class="flexBetween headerColor">
       <div>
         <img alt="Vue logo" src="./assets/icon-left-font-monochrome-white.png" class="logo">
@@ -28,8 +28,8 @@
       </div>
     </div>
     <!------------------------------bloc article----------------------------->
-    <div id="app" class="socialContainer">
-      <div class="blocIndexContainer">
+    <div class="socialContainer">
+      <div class="blocArticleContainer">
         <div class="userStyle"> {{ Username }} </div>
         <div>
           {{ article }}
@@ -43,7 +43,7 @@
         <div class="finArticle"></div>
       </div>
     </div>
-    <!------------------------------bloc Reponse----------------------------->
+    <!------------------------------bloc Publier----------------------------->
     <div class="socialContainer">
         <div class="blocContainer">
             <p class="textStyle"> Username </p>
@@ -57,7 +57,7 @@
             </div>
         </div>
     </div>
-    <!------------------------------bloc signup------------------------------->
+    <!------------------------------bloc inscription------------------------------->
     <div class="socialContainer">
       <div class="blocContainer">
         <p class="textStyle"> Firstname </p>
@@ -75,7 +75,7 @@
         </div>
       </div>
     </div>
-    <!-------------------------------bloc login-------------------------------->
+    <!-------------------------------bloc connexion-------------------------------->
     <div class="socialContainer">
       <div class="blocContainer">
         <p class="textStyle"> Username </p>
@@ -235,7 +235,7 @@ export default {
   border: 10px solid black;
   text-align: center;
   width: 70%;
-  height: 800px;
+  height: 1000px;
 }
 
 .userStyle {
@@ -280,6 +280,16 @@ export default {
   width: 100%;
   height: 20px;
   border-bottom: 2px solid gold;
+}
+
+/*-----------------------Bloc article-----------------------*/
+
+.blocArticleContainer {
+  background-color: lightgrey;
+  border: 10px solid black;
+  text-align: center;
+  width: 70%;
+  height: 100%;
 }
 
 

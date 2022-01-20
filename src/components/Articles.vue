@@ -1,15 +1,19 @@
 <template>
     <div id="app">
-        <div class="userStyle"> {{ Username }} </div>
-        <div>
-            {{ article }}
+        <div class="socialContainer">
+            <div class="blocArticleContainer">
+                <div class="userStyle"> {{ Username }} </div>
+                <div>
+                    {{ article }}
+                </div>
+                <div class="row">
+                    <button class="btnLike" v-on:click="like()">+</button>
+                    <p class="likeTxt"> Like </p>
+                    <button class="btnDislike" v-on:click="dislike()">-</button>
+                </div>
+                <button class="btnStyle" v-on:click="publier()"> Publier </button>
+            </div>
         </div>
-        <div class="row">
-            <button class="btnLike" v-on:click="like()">+</button>
-            <p class="likeTxt"> Like </p>
-            <button class="btnDislike" v-on:click="dislike()">-</button>
-        </div>
-        <button class="btnStyle" v-on:click="publier()"> Publier </button>
     </div>
 </template>
 
@@ -39,6 +43,24 @@ var app = new Vue ({
 </script>
 
 <style>
+
+.socialContainer {
+  display: flex;  
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: grey;
+  padding: 10% 0;
+}
+
+.blocArticleContainer {
+  background-color: lightgrey;
+  border: 10px solid black;
+  text-align: center;
+  width: 70%;
+  height: 100%;
+}
+
 .userStyle {
   height: 20px;
   font-size: 17px;
