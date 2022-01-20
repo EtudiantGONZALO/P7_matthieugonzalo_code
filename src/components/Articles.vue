@@ -3,9 +3,7 @@
         <div class="socialContainer">
             <div class="blocArticleContainer">
                 <div class="userStyle"> {{ Username }} </div>
-                <div>
-                    {{ article }}
-                </div>
+                <p> {{ article }} </p>
                 <div class="row">
                     <button class="btnLike" v-on:click="like()">+</button>
                     <p class="likeTxt"> Like </p>
