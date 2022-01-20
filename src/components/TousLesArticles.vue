@@ -17,6 +17,7 @@
         <div class="finArticle"></div>
       </div>
     </div>
+    <Articles></Articles>
 </div>
 </template>
 
