@@ -25,7 +25,7 @@
 import { Header } from './Header.vue'
 
 export default {
-  name: 'Header',
+  name: 'Inscription',
 
   components: {
     Header,

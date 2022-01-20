@@ -23,12 +23,13 @@
 
 <script>
 import { Header } from './Header.vue'
+import { Articles } from './Articles.vue'
 
 export default {
-  name: 'Header',
+  name: 'TousLesArticles',
 
   components: {
-    Header,
+    Header, Articles
   },
 }
 

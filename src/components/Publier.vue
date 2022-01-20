@@ -21,7 +21,7 @@
 import { Header } from './Header.vue'
 
 export default {
-  name: 'Header',
+  name: 'Publier',
 
   components: {
     Header,
