@@ -21,13 +21,6 @@
 <script>
 export default {
   name: 'Inscription',
-  props: {
-    Firstname: String,
-    Lastname: String,
-    Email: String,
-    Username: String,
-    Password: String
-  }
 }
 
 </script>

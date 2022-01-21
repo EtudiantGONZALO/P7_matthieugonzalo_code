@@ -15,10 +15,6 @@
 <script>
 export default {
   name: 'Connexion',
-  props: {
-    username: String,
-    password: String
-  }
 }
 
 

@@ -1,6 +1,14 @@
 <template>
   <div>
-    <h1> coucou </h1>
+    <header class="flexBetween headerColor">
+      <div>
+        <img alt="Vue logo" src="./assets/icon-left-font-monochrome-white.png" class="logo">
+      </div>
+      <nav class="flexEvenly">
+        <router-link to="/Inscription" class="textDecoration">Inscription</router-link>
+        <router-link to="/Connexion" class="textDecoration">Connexion</router-link>
+      </nav>
+    </header>
     <router-link to="/test1">test 1</router-link>
     <router-link to="/test2">test 2</router-link>
     <router-view/>
