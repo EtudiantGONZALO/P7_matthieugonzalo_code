@@ -1,8 +1,7 @@
 <template>
-<div id="app">
-    <Header></Header>
+<div>
     <div class="socialContainer">
-      <div class="blocIndexContainer">
+      <div class="blocArticleContainer">
         <div class="userStyle">
           Groupomania
         </div>
@@ -13,8 +12,9 @@
           <p class="likeTxt"> Like </p>
           <button class="btnDislike" v-on:click="dislike()">-</button>
         </div>
-        <button class="btnStyle" v-on:click="publier()"> Répondre </button>
+        <button class="btnStyle" v-on:click="repondre()"> Répondre </button>
         <div class="finArticle"></div>
+        <Reponse></Reponse>
       </div>
     </div>
     <Articles></Articles>
@@ -22,29 +22,18 @@
 </template>
 
 <script>
-import { Header } from './Header.vue'
+import { Reponse } from './Articles.vue'
 import { Articles } from './Articles.vue'
-
 export default {
   name: 'TousLesArticles',
-
   components: {
-    Header, Articles
-  },
+    Reponse, Articles
+  }
 }
-
-var app = new Vue ({
-    el: "#app",
-    data: {
-        
-    },
-    methods: {
-    }
-})
 
 </script>
 
-<style>
+<style lang="scss">
 
 .socialContainer {
   display: flex;  
@@ -55,12 +44,12 @@ var app = new Vue ({
   padding: 10% 0;
 }
 
-.blocIndexContainer {
+.blocArticleContainer {
   background-color: lightgrey;
   border: 10px solid black;
   text-align: center;
   width: 70%;
-  height: 1000px;
+  height: 100%;
 }
 
 .userStyle {
@@ -80,57 +69,58 @@ var app = new Vue ({
 
 .btnLike {
   transition: all 400ms;
-}
-.btnLike:hover {
-  background-color: #86fc00;
-  color: white;
+    &:hover {
+      background-color: #86fc00;
+      color: white;
+    }
 }
 
 .btnDislike {
   transition: all 400ms;
-}
-.btnDislike:hover {
-  background-color: tomato;
-  color: white;
-}
-
-.btnStyle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 200px;
-  height: 40px;
-  margin: auto;
-  color: white;
-  text-decoration: none;
-  background: linear-gradient(#0065FC, #083eee);
-  border-radius: 20px;
-  margin-top: 40px;
-  box-shadow: 3px 3px 3px grey;
-  z-index: 1;
-  position: relative;
+    &:hover {
+      background-color: tomato;
+      color: white;
+    }
 }
 
-.btnStyle:hover {
-  box-shadow: 3px 3px 3px grey;
-}
-
-.btnStyle:hover::after {
-  opacity: 1;
-}
-
-.btnStyle::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border-radius: 20px;
-  background: linear-gradient(#0065FC 0%, #08adee 100%);
-  opacity: 0;
-  z-index: -1;
-  transition: opacity 500ms;
+.btnStyle
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 40px;
+    margin: auto;
+    color: white;
+    text-decoration: none;
+    background: linear-gradient( #0065FC, #083eee);
+    border-radius: 20px;
+    margin-bottom: 40px;
+    box-shadow: 3px 3px 3px grey;
+    z-index: 1;
+    position: relative;
+    &:hover
+    {
+        box-shadow: 3px 3px 3px grey;
+        &::after
+        {
+            opacity: 1;
+        }
+    }
+    &::after
+    {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: 20px;
+        background: linear-gradient(darken(#0065FC, 8) 0%, lighten(#08adee, 4) 100%);
+        opacity: 0;
+        z-index: -1;
+        transition: opacity 500ms;
+    }
 }
 
 .finArticle {

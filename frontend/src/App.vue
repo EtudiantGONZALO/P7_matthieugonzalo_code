@@ -12,7 +12,7 @@
     </header>
     <!------------------------------bloc index------------------------------->
     <div class="socialContainer">
-      <div class="blocIndexContainer">
+      <div class="blocArticleContainer">
         <div class="userStyle">
           Groupomania
         </div>
@@ -229,14 +229,6 @@ export default {
 }
 
 /*---------------------------Bloc Index--------------------------*/
-
-.blocIndexContainer {
-  background-color: lightgrey;
-  border: 10px solid black;
-  text-align: center;
-  width: 70%;
-  height: 1000px;
-}
 
 .userStyle {
   height: 20px;

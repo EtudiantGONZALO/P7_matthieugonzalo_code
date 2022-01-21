@@ -1,6 +1,4 @@
 <template>
-<div id="app">
-    <Header></Header>
     <div class="socialContainer">
         <div class="blocContainer">
             <p class="textStyle"> Username </p>
@@ -14,30 +12,22 @@
             </div>
         </div>
     </div>
-</div>
 </template>
 
 <script>
-import { Header } from './Header.vue'
 
 export default {
   name: 'Publier',
-
-  components: {
-    Header,
-  },
+  props: {
+    article: String,
+    photo: JPEG, JPG, PNG
+  }
+  
 }
 
-var app = new Vue ({
-    el: "#app",
-    data: {
-        article: "",
-        photo: "",
-    }
-})
 </script>
 
-<style>
+<style lang="scss">
 
 .socialContainer {
   display: flex;  
@@ -67,40 +57,44 @@ var app = new Vue ({
   outline: none;
 }
 
-.btnStyle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 200px;
-  height: 40px;
-  margin: auto;
-  color: white;
-  text-decoration: none;
-  background: linear-gradient(#0065FC, #083eee);
-  border-radius: 20px;
-  margin-top: 40px;
-  box-shadow: 3px 3px 3px grey;
-  z-index: 1;
-  position: relative;
-}
-.btnStyle:hover {
-  box-shadow: 3px 3px 3px grey;
-}
-.btnStyle:hover::after {
-  opacity: 1;
-}
-.btnStyle::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border-radius: 20px;
-  background: linear-gradient(#0065FC 0%, #08adee 100%);
-  opacity: 0;
-  z-index: -1;
-  transition: opacity 500ms;
+.btnStyle
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 40px;
+    margin: auto;
+    color: white;
+    text-decoration: none;
+    background: linear-gradient( #0065FC, #083eee);
+    border-radius: 20px;
+    margin-bottom: 40px;
+    box-shadow: 3px 3px 3px grey;
+    z-index: 1;
+    position: relative;
+    &:hover
+    {
+        box-shadow: 3px 3px 3px grey;
+        &::after
+        {
+            opacity: 1;
+        }
+    }
+    &::after
+    {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: 20px;
+        background: linear-gradient(darken(#0065FC, 8) 0%, lighten(#08adee, 4) 100%);
+        opacity: 0;
+        z-index: -1;
+        transition: opacity 500ms;
+    }
 }
 
 

@@ -1,5 +1,5 @@
 <template>
-    <header id="app" class="flexBetween headerColor">
+    <Header class="flexBetween headerColor">
       <div>
         <img alt="Vue logo" src="./assets/icon-left-font-monochrome-white.png" class="logo">
       </div>
@@ -7,18 +7,17 @@
         <a href="" class="textDecoration">Inscription</a>
         <a href="" class="textDecoration">Connexion</a>
       </nav>
-    </header>
+    </Header>
 </template>
 
 <script>
 
-var app = new Vue ({
-    el: "#app",
-    data: {
-        username: "",
-        password: "",
-    },
-})
+export default {
+  name: 'Header',
+  components: {
+    Header
+  }
+}
 
 </script>
 
