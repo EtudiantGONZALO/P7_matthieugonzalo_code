@@ -10,7 +10,7 @@
         <a href="" class="textDecoration">Connexion</a>
       </nav>
     </header>
-    <!------------------------------bloc index------------------------------->
+    <!------------------------------bloc TousLesArticles------------------------------->
     <div class="socialContainer">
       <div class="blocArticleContainer">
         <div class="userStyle">
@@ -18,7 +18,7 @@
         </div>
         <p> Groupomania vous souhaite la bienvenue <br/> sur son forum de discussion </p>
         <img alt="Vue logo" src="./assets/icon-above-font.png">
-        <div class="row">
+        <div class="row marginBottom">
           <button class="btnLike">+</button>
           <p class="likeTxt"> Like </p>
           <button class="btnDislike">-</button>
@@ -27,6 +27,9 @@
         <div class="finArticle"></div>
       </div>
     </div>
+    <div class="btnPublier">
+      <button class="btnStyle " v-on:click="publier()"> Publier </button>
+    </div>
     <!------------------------------bloc article----------------------------->
     <div class="socialContainer">
       <div class="blocArticleContainer">
@@ -34,7 +37,7 @@
         <div>
           {{ article }}
         </div>
-        <div class="row">
+        <div class="row marginBottom">
           <button class="btnLike">+</button>
           <p class="likeTxt"> Like </p>
           <button class="btnDislike">-</button>
@@ -50,7 +53,7 @@
             <textarea type="text" value="" class="sizeInput" rows="12" v-model="article"></textarea>
             <div>
                 <p>Ajouter une photo</p>
-                <input type="text" v-model="photo">
+                <input type="text" v-model="photo" class="marginBottom">
             </div>
             <div>
                 <button class="btnStyle" v-on:click="publier()"> Publier </button>
@@ -69,7 +72,7 @@
         <p class="textStyle"> Username </p>
         <input type="text" value="" v-model="Username">
         <p class="textStyle"> Mot de passe </p>
-        <input type="text" value="" v-model="Password">
+        <input type="text" value="" v-model="Password" class="marginBottom">
         <div>
           <button class="btnStyle" v-on:click="creer()"> Créer un compte </button>
         </div>
@@ -81,12 +84,12 @@
         <p class="textStyle"> Username </p>
         <input type="text" value="" v-model="username">
         <p class="textStyle"> Mot de passe </p>
-        <input type="text" value="" v-model="password">
+        <input type="text" value="" v-model="password" class="marginBottom">
         <div>
           <button class="btnStyle" v-on:click="connecter()"> Connexion </button>
         </div>
       </div>
-    </div>
+    </div>   
     
   </div>
 </template>
@@ -203,7 +206,6 @@ export default {
   text-decoration: none;
   background: linear-gradient(#0065FC, #083eee);
   border-radius: 20px;
-  margin-top: 40px;
   box-shadow: 3px 3px 3px grey;
   z-index: 1;
   position: relative;
@@ -282,6 +284,27 @@ export default {
   text-align: center;
   width: 70%;
   height: 100%;
+}
+
+/*----------------------Btn position-------------------------*/
+
+.btnPosition {
+  position: relative;
+  top: 80px;
+  right: 0;
+}
+
+/*-------------------margin-------------------------*/
+
+.marginBottom {
+  margin-bottom: 40px;
+}
+
+/*-------------------btn publier-------------------*/
+
+.btnPublier {
+  padding: 20px 0;
+  background-color: grey;
 }
 
 
