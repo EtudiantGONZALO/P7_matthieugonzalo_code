@@ -1,109 +1,15 @@
 <template>
-  <div id="app">
-    <!------------------------------Bloc Header---------------------------------->
-    <header class="flexBetween headerColor">
-      <div>
-        <img alt="Vue logo" src="./assets/icon-left-font-monochrome-white.png" class="logo">
-      </div>
-      <nav class="flexEvenly">
-        <a href="" class="textDecoration">Inscription</a>
-        <a href="" class="textDecoration">Connexion</a>
-      </nav>
-    </header>
-    <!------------------------------bloc TousLesArticles------------------------------->
-    <div class="socialContainer">
-      <div class="blocArticleContainer">
-        <div class="userStyle">
-          Groupomania
-        </div>
-        <p> Groupomania vous souhaite la bienvenue <br/> sur son forum de discussion </p>
-        <img alt="Vue logo" src="./assets/icon-above-font.png">
-        <div class="row marginBottom">
-          <button class="btnLike">+</button>
-          <p class="likeTxt"> Like </p>
-          <button class="btnDislike">-</button>
-        </div>
-        <button class="btnStyle" v-on:click="publier()"> Répondre </button>
-        <div class="finArticle"></div>
-      </div>
-    </div>
-    <div class="btnPublier">
-      <button class="btnStyle " v-on:click="publier()"> Publier </button>
-    </div>
-    <!------------------------------bloc article----------------------------->
-    <div class="socialContainer">
-      <div class="blocArticleContainer">
-        <div class="userStyle"> {{ Username }} </div>
-        <div>
-          {{ article }}
-        </div>
-        <div class="row marginBottom">
-          <button class="btnLike">+</button>
-          <p class="likeTxt"> Like </p>
-          <button class="btnDislike">-</button>
-        </div>
-        <button class="btnStyle" v-on:click="publier()"> Répondre </button>
-        <div class="finArticle"></div>
-      </div>
-    </div>
-    <!------------------------------bloc Publier----------------------------->
-    <div class="socialContainer">
-        <div class="blocContainer">
-            <p class="textStyle"> Username </p>
-            <textarea type="text" value="" class="sizeInput" rows="12" v-model="article"></textarea>
-            <div>
-                <p>Ajouter une photo</p>
-                <input type="text" v-model="photo" class="marginBottom">
-            </div>
-            <div>
-                <button class="btnStyle" v-on:click="publier()"> Publier </button>
-            </div>
-        </div>
-    </div>
-    <!------------------------------bloc inscription------------------------------->
-    <div class="socialContainer">
-      <div class="blocContainer">
-        <p class="textStyle"> Firstname </p>
-        <input type="text" value="" v-model="Firstname">
-        <p class="textStyle"> Lastname </p>
-        <input type="text" value="" v-model="Lastname">
-        <p class="textStyle"> Email </p>
-        <input type="text" value="" v-model="Email">
-        <p class="textStyle"> Username </p>
-        <input type="text" value="" v-model="Username">
-        <p class="textStyle"> Mot de passe </p>
-        <input type="text" value="" v-model="Password" class="marginBottom">
-        <div>
-          <button class="btnStyle" v-on:click="creer()"> Créer un compte </button>
-        </div>
-      </div>
-    </div>
-    <!-------------------------------bloc connexion-------------------------------->
-    <div class="socialContainer">
-      <div class="blocContainer">
-        <p class="textStyle"> Username </p>
-        <input type="text" value="" v-model="username">
-        <p class="textStyle"> Mot de passe </p>
-        <input type="text" value="" v-model="password" class="marginBottom">
-        <div>
-          <button class="btnStyle" v-on:click="connecter()"> Connexion </button>
-        </div>
-      </div>
-    </div>   
-    
+  <div>
+    <h1> coucou </h1>
+    <router-link to="/test1">test 1</router-link>
+    <router-link to="/test2">test 2</router-link>
+    <router-view/>
   </div>
 </template>
 
 <script>
-
-/*import Articles from './components/Articles.vue'
-
 export default {
   name: 'App',
-
-  components: {
-    Articles,
-  },
 
   data() {
     return {
@@ -116,8 +22,6 @@ export default {
     };
   }
 }
-
-*/
 </script>
 
 <style>
