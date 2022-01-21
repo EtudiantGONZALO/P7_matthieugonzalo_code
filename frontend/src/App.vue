@@ -1,18 +1,20 @@
 <template>
-  <div>
-    <header class="flexBetween headerColor">
+<div>
+    <div class="flexBetween headerColor">
       <div>
         <img alt="Vue logo" src="./assets/icon-left-font-monochrome-white.png" class="logo">
       </div>
-      <nav class="flexEvenly">
-        <router-link to="/Inscription" class="textDecoration">Inscription</router-link>
-        <router-link to="/Connexion" class="textDecoration">Connexion</router-link>
-      </nav>
-    </header>
-    <router-link to="/test1">test 1</router-link>
-    <router-link to="/test2">test 2</router-link>
+      <div class="flexEvenly">
+        <router-link to="/inscription" class="textDecoration">Inscription</router-link>
+        <router-link to="/connexion" class="textDecoration">Connexion</router-link>
+      </div>
+    </div>
+    <!--   -->
+    
+    <!--   -->
+    
     <router-view/>
-  </div>
+</div>
 </template>
 
 <script>

@@ -1,13 +1,9 @@
 import Inscription from "../components/Inscription.vue";
 import Connexion from "../components/Connexion.vue";
-import Test1 from "../components/Test1.vue";
-import Test2 from "../components/Test2.vue";
 import VueRouter from 'vue-router';
 const routes = [
-    { path: '/Inscription', component: Inscription },
-    { path: '/Connexion', component: Connexion },
-    { path: '/test1', component: Test1 },
-    { path: '/test2', component: Test2 },
+    { path: '/inscription', component: Inscription },
+    { path: '/connexion', component: Connexion },
   ]
   
   // 3. Create the router instance and pass the `routes` option

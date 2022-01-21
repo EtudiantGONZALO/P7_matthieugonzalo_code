@@ -1,21 +1,21 @@
 <template>
-    <article class="socialContainer">
+    <div class="socialContainer">
       <div class="blocContainer">
         <p class="textStyle"> Firstname </p>
-        <input type="text" value="" v-model="Firstname">
+        <input type="text" value="">
         <p class="textStyle"> Lastname </p>
-        <input type="text" value="" v-model="Lastname">
+        <input type="text" value="">
         <p class="textStyle"> Email </p>
-        <input type="text" value="" v-model="Email">
+        <input type="text" value="">
         <p class="textStyle"> Username </p>
-        <input type="text" value="" v-model="Username">
+        <input type="text" value="">
         <p class="textStyle"> Mot de passe </p>
-        <input type="text" value="" v-model="Password">
+        <input type="text" value="" class="marginBottom">
         <div>
-          <button class="btnStyle" v-on:click="creer()"> Créer un compte </button>
+          <button class="btnStyle"> Créer un compte </button>
         </div>
       </div>
-    </article>
+    </div>
 </template>
 
 <script>
@@ -25,7 +25,7 @@ export default {
 
 </script>
 
-<style lang="scss">
+<style>
 
 .socialContainer {
   display: flex;  
@@ -87,6 +87,10 @@ export default {
         z-index: -1;
         transition: opacity 500ms;
     }
+}
+
+.marginBottom {
+  margin-bottom: 40px;
 }
 
 

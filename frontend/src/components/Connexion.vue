@@ -2,11 +2,11 @@
     <div class="socialContainer">
       <div class="blocContainer">
         <p class="textStyle"> Username </p>
-        <input type="text" value="" v-model="username">
+        <input type="text" value="">
         <p class="textStyle"> Mot de passe </p>
-        <input type="text" value="" v-model="password">
+        <input type="text" value="" class="marginBottom">
         <div>
-          <button class="btnStyle" v-on:click="connecter()"> Connexion </button>
+          <button class="btnStyle"> Connexion </button>
         </div>
       </div>
     </div>
@@ -20,7 +20,7 @@ export default {
 
 </script>
 
-<style lang="scss">
+<style>
 
 .socialContainer {
   display: flex;  
@@ -82,6 +82,10 @@ export default {
         z-index: -1;
         transition: opacity 500ms;
     }
+}
+
+.marginBottom {
+  margin-bottom: 40px;
 }
 
 </style>
