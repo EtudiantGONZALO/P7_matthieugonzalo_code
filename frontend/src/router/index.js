@@ -1,9 +1,11 @@
 import Inscription from "../components/Inscription.vue";
 import Connexion from "../components/Connexion.vue";
+import Publier from "../components/Publier.vue";
 import VueRouter from 'vue-router';
 const routes = [
     { path: '/inscription', component: Inscription },
     { path: '/connexion', component: Connexion },
+    { path: '/publier', component: Publier },
   ]
   
   // 3. Create the router instance and pass the `routes` option

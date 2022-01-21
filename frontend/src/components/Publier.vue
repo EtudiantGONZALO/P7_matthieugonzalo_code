@@ -3,7 +3,7 @@
         <div class="blocContainer">
             <p class="textStyle"> Username </p>
             <textarea type="text" value="" class="sizeInput" rows="12" v-model="article"></textarea>
-            <div>
+            <div class="marginBottom">
                 <p>Ajouter une photo</p>
                 <input type="text" v-model="photo">
             </div>
@@ -18,16 +18,11 @@
 
 export default {
   name: 'Publier',
-  props: {
-    article: String,
-    photo: JPEG, JPG, PNG
-  }
-  
 }
 
 </script>
 
-<style lang="scss">
+<style>
 
 .socialContainer {
   display: flex;  
@@ -95,6 +90,10 @@ export default {
         z-index: -1;
         transition: opacity 500ms;
     }
+}
+
+.marginBottom {
+  margin-bottom: 40px;
 }
 
 
