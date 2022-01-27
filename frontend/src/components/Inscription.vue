@@ -1,18 +1,33 @@
 <template>
     <div class="socialContainer">
       <div class="blocContainer">
-        <p class="textStyle"> Firstname </p>
-        <input type="text" value="">
-        <p class="textStyle"> Lastname </p>
-        <input type="text" value="">
-        <p class="textStyle"> Email </p>
-        <input type="text" value="">
-        <p class="textStyle"> Username </p>
-        <input type="text" value="">
-        <p class="textStyle"> Mot de passe </p>
-        <input type="text" value="" class="marginBottom">
         <div>
-          <button class="btnStyle"> Créer un compte </button>
+          <p class="textStyle"> Firstname </p>
+          <input type="text" v-model="firstname">
+          <p id="firstNameErrorMsg" v-bind:valueFN="option.value"></p>
+        </div>
+        <div>
+          <p class="textStyle"> Lastname </p>
+          <input type="text" v-model="lastname">
+          <p id="lastNameErrorMsg" v-bind:valueLN="option.value"></p>
+        </div>
+        <div>
+          <p class="textStyle"> Email </p>
+          <input type="text" v-model="email">
+          <p id="emailErrorMsg" v-bind:valueEmail="option.value"></p>
+        </div>
+        <div>
+          <p class="textStyle"> Username </p>
+          <input type="text" v-model="username">
+          <p id="usernameErrorMsg" v-bind:valueU="option.value"></p>
+        </div>
+        <div>
+          <p class="textStyle"> Mot de passe </p>
+          <input type="text" class="marginBottom" v-model="password">
+          <p id="passwordErrorMsg" v-bind:valuePass="option.value"></p>
+        </div>
+        <div>
+          <button class="btnStyle" v-on:click="creerCompte()"> Créer un compte </button>
         </div>
       </div>
     </div>
@@ -21,7 +36,52 @@
 <script>
 export default {
   name: 'Inscription',
-}
+  /*data() {
+    return {
+      firstname: "",
+      lastname: "",
+      username: "",
+      password: "",
+      email: "",
+    }
+  },
+  props: [
+    valueFN,
+    valueLN,
+    valueUsername,
+    valuePass,
+    valueEmail,
+  ],
+  }
+  methods: {
+    creerCompte = function() {
+      var masqueCaractere = /^[a-zA-Z0-9- ']+$/g;
+      var masqueEmail = /[a-zA-Z0-9_\.\+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-\.]+/;
+
+      if (masqueCaractere.test(firstName) && masqueCaractere.test(lastName) && masqueCaractere.test(Username) && masqueCaractere.test(password) && masqueEmail.test(email)) {
+        var contact = {
+          firstName,
+          lastName,
+          username,
+          password,
+          email,
+          }
+        } else {
+          var pErrorFirstNameMsg = valueFN;
+          var pErrorLastNameMsg = valueLN;
+          var pErrorUsernameMsg = valueU;
+          var pErrorPasswordMsg = valuePass;
+          var pErrorEmailMsg = valueEmail;
+
+          pErrorFirstNameMsg.innerText = "Votre prénom ne doit pas contenir de caractères interdits.";
+          pErrorLastNameMsg.innerText = "Votre Nom ne doit pas contenir de caractères interdits.";
+          pErrorUsernameMsg.innerText = "Votre adresse ne doit pas contenir de caratères spéciaux.";
+          pErrorPasswordMsg.innerText = "Votre ville ne doit pas contenir de caractères interdits.";
+          pErrorEmailMsg.innerText = "Votre Email n'est pas valide.";
+          return false;
+          }
+    }*/
+  }
 
 </script>
 

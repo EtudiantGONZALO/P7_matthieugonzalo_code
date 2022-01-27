@@ -2,13 +2,13 @@
     <div class="socialContainer">
         <div class="blocContainer">
             <p class="textStyle"> Username </p>
-            <textarea type="text" value="" class="sizeInput" rows="12" v-model="article"></textarea>
+            <textarea type="text"  class="sizeInput" rows="12" v-model="publication"></textarea>
             <div class="marginBottom">
                 <p>Ajouter une photo</p>
                 <input type="text" v-model="photo">
             </div>
             <div>
-                <button class="btnStyle" v-on:click="publier()"> Publier </button>
+                <router-link class="btnStyle" v-on:click="editer()"> Publier </router-link>
             </div>
         </div>
     </div>
@@ -18,6 +18,7 @@
 
 export default {
   name: 'Publier',
+  //props: ['publication'],
 }
 
 </script>

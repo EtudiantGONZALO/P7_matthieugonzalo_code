@@ -1,10 +1,9 @@
 <template>
     <div>
-        <Article class="socialContainer">
+        <div class="socialContainer">
             <div class="blocArticleContainer">
-              <Reponse>
-                <div class="userStyle"> {{ Username }} </div>
-                <p> {{ article }} </p>
+                <div class="userStyle"> Username </div>
+                <p> {{ publication }} </p>
                 <div class="row">
                     <button class="btnLike" v-on:click="like()">+</button>
                     <p class="likeTxt"> Like </p>
@@ -12,9 +11,8 @@
                 </div>
                 <button class="btnStyle" v-on:click="repondre()"> Répondre </button>
                 <div class="finArticle"></div>
-              </Reponse>
             </div>
-        </Article>
+        </div>
     </div>
 </template>
 
@@ -22,14 +20,11 @@
 
 export default {
   name: 'Articles',
-  components: {
-    Article, Reponse
-  }
 }
 
 </script>
 
-<style lang="scss">
+<style>
 
 .socialContainer {
   display: flex;  

@@ -1,35 +1,25 @@
 <template>
     <div class="socialContainer">
-      <div class="blocContainer">
-        <p class="textStyle"> Email </p>
-        <input type="text" v-model="email2">
-        <p class="textStyle"> Mot de passe </p>
-        <input type="text" class="marginBottom" v-model="password2">
-        <div>
-          <button class="btnStyle" v-on:click="connecter()"> Connexion </button>
+        <div class="blocContainer">
+            <p class="textStyle"> Username </p>
+            <textarea type="text"  class="sizeInput" rows="12" v-model="publication"></textarea>
+            <div class="marginBottom">
+                <p>Ajouter une photo</p>
+                <input type="text" v-model="photo">
+            </div>
+            <div>
+                <router-link class="btnStyle" v-on:click="editerReponse()"> Publier </router-link>
+            </div>
         </div>
-      </div>
     </div>
 </template>
 
 <script>
-//import Inscription from "./components/Inscription.vue"
 
 export default {
-  name: 'Connexion',
-  /*props: [
-    email2,
-    password2,
-  ]
-  methods: {
-    connecter : function () {
-      if (email == email2 && password == password2) {
-        document.location.href = "./components/TousLesArticles.vue";
-      }
-    }
-  }*/
+  name: 'PublierReponse',
+  //props: ['publication'],
 }
-
 
 </script>
 
@@ -55,6 +45,12 @@ export default {
 
 .textStyle {
   margin: 10px 0 10px 0;
+}
+
+.sizeInput {
+  width: 70%;
+  height: 50%;
+  outline: none;
 }
 
 .btnStyle
@@ -100,5 +96,6 @@ export default {
 .marginBottom {
   margin-bottom: 40px;
 }
+
 
 </style>

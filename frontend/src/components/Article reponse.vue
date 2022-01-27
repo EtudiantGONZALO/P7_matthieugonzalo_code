@@ -1,33 +1,21 @@
 <template>
-<div>
-    <div class="socialContainer">
-      <div class="blocArticleContainer">
-        <div class="userStyle">
-          Groupomania
-        </div>
-        <p> Groupomania vous souhaite la bienvenue <br/> sur son forum de discussion </p>
-        <img src="../assets/icon-above-font.png" alt="Vue photo">
-        <div class="row marginBottom">
-          <button class="btnLike" v-on:click="like()">+</button>
-          <p class="likeTxt"> Like </p>
-          <button class="btnDislike" v-on:click="dislike()">-</button>
-        </div>
-          <router-link to="/Publier" class="btnStyle" v-on:click="repondre()"> Répondre </router-link>
-        <div class="finArticle"></div>
-        <!--<router.push({ name: 'Article reponse' })>-->
+    <div>
+      <div class="userStyle"> Username </div>
+      <p> {{ publication }} </p>
+      <div class="row">
+        <button class="btnLike" v-on:click="like()">+</button>
+        <p class="likeTxt"> Like </p>
+        <button class="btnDislike" v-on:click="dislike()">-</button>
       </div>
+      <button class="btnStyle" v-on:click="repondre()"> Répondre </button>
+      <div class="finArticle"></div>
     </div>
-  <!--<router-view name="Reponse"></router-view>-->
-  <div class="backgroundBtnPublier">
-    <router-link to="/Publier" class="btnStyle" v-on:click="publier()"> Publier </router-link>
-  </div>
-</div>
 </template>
 
 <script>
 
 export default {
-  name: 'TousLesArticles',
+  name: 'ArticlesReponse',
 }
 
 </script>
@@ -40,6 +28,7 @@ export default {
   width: 100%;
   height: 100%;
   background-color: grey;
+  padding: 10% 0;
 }
 
 .blocArticleContainer {
@@ -65,6 +54,13 @@ export default {
   height: 20px;
 }
 
+.likeTxt {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  color: white;
+  background-color: #0065FC;
+}
+
 .btnLike {
   transition: all 400ms;
     &:hover {
@@ -79,6 +75,18 @@ export default {
       background-color: tomato;
       color: white;
     }
+}
+
+.finArticle {
+  width: 100%;
+  height: 20px;
+  border-bottom: 2px solid gold;
+}
+
+.rowEvenly {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .btnStyle
@@ -120,16 +128,4 @@ export default {
         transition: opacity 500ms;
     }
 }
-
-.finArticle {
-  width: 100%;
-  height: 20px;
-  border-bottom: 2px solid gold;
-}
-
-.backgroundBtnPublier {
-  background-color: grey;
-  padding-bottom: 40px;
-}
-
 </style>

@@ -14,9 +14,6 @@
 
 export default {
   name: 'Header',
-  components: {
-    Header
-  }
 }
 
 </script>

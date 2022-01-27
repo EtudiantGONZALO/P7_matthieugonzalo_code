@@ -9,47 +9,24 @@
         <router-link to="/connexion" class="textDecoration">Connexion</router-link>
       </div>
     </div>
-      
     <!--   -->
-    <div class="socialContainer">
-      <div class="blocArticleContainer">
-        <div class="userStyle">
-          Groupomania
-        </div>
-        <p> Groupomania vous souhaite la bienvenue <br/> sur son forum de discussion </p>
-        <img alt="Vue logo" src="./assets/icon-above-font.png">
-        <div class="row marginBottom">
-          <button class="btnLike" v-on:click="like()">+</button>
-          <p class="likeTxt"> Like </p>
-          <button class="btnDislike" v-on:click="dislike()">-</button>
-        </div>
-        <button class="btnStyle" v-on:click="repondre()"> Répondre </button>
-        <div class="finArticle"></div>
-      </div>
-    </div>
-    <div class="btnPublier">
-      <router-link to="/publier" class="btnStyle" v-on:click="publier()"> Publier </router-link>
-    </div>
-      <!--   -->
-  <router-view /> 
+    
+    <!--   -->
+    <router-view/>
+    
 </div>
 </template>
 
 <script>
+//import publication from "./components/Publier.vue"
+
 export default {
   name: 'App',
-
-  data() {
-    return {
-    Username: "",
-    FirstName: "",
-    Lastname: "",
-
-    username: "",
-    password: "",
-    };
-  }
+  //components: {
+    //publication
+  //}
 }
+
 </script>
 
 <style>
@@ -101,7 +78,6 @@ export default {
   width: 100%;
   height: 100%;
   background-color: grey;
-  padding: 10% 0;
 }
 
 .blocContainer {
@@ -110,7 +86,6 @@ export default {
   text-align: center;
   width: 70%;
   height: 100%;
-  padding: 50px 0;
 }
 
 .sizeInput {
@@ -143,28 +118,25 @@ export default {
     box-shadow: 3px 3px 3px grey;
     z-index: 1;
     position: relative;
-      &:hover
-      {
-          box-shadow: 3px 3px 3px grey;
-          &::after
-          {
-              opacity: 1;
-          }
-      }
-      &::after
-      {
-          content: "";
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          border-radius: 20px;
-          background: linear-gradient(darken(#0065FC, 8) 0%, lighten(#08adee, 4) 100%);
-          opacity: 0;
-          z-index: -1;
-          transition: opacity 500ms;
-      }
+    &:hover {
+    box-shadow: 3px 3px 3px grey;
+      &::after {
+        opacity: 1;
+        }
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: 20px;
+      background: linear-gradient(darken(#0065FC, 8) 0%, lighten(#08adee, 4) 100%);
+      opacity: 0;
+      z-index: -1;
+      transition: opacity 500ms;
+    }
 }
 
 /*---------------------------Bloc Index--------------------------*/
