@@ -19,12 +19,12 @@
         <div>
           <p class="textStyle"> Username </p>
           <input type="text" v-model="username">
-          <p id="usernameErrorMsg" v-bind:valueU="option.value"></p>
+          <p id="usernameErrorMsg" v-bind:valueUsername="option.value"></p>
         </div>
         <div>
           <p class="textStyle"> Mot de passe </p>
           <input type="text" class="marginBottom" v-model="password">
-          <p id="passwordErrorMsg" v-bind:valuePass="option.value"></p>
+          <p id="passwordErrorMsg"  v-bind:valuePass="option.value"></p>
         </div>
         <div>
           <button class="btnStyle" v-on:click="creerCompte()"> Créer un compte </button>

@@ -6,10 +6,9 @@ import Publier from "../components/Publier.vue";
 import VueRouter from 'vue-router';
 
 const routes = [
-    { path: '/touslesarticles', component: TousLesArticles },
+    { path: '/', component: TousLesArticles },
     //{ path: '/touslesarticles', component: TousLesArticles, children: { path: 'articles', component: Articles }},
     { path: '/signup', component: Inscription },
-    { path: '/', component: Connexion },
     { path: '/login', component: Connexion },
     { path: '/publier', component: Publier },
   ]
