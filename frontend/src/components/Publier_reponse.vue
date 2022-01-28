@@ -8,7 +8,7 @@
                 <input type="text" v-model="photo">
             </div>
             <div>
-                <router-link class="btnStyle" v-on:click="editerReponse()"> Publier </router-link>
+                <router-link to="/articleReponse" class="btnStyle" v-on:click="editerReponse()"> Publier </router-link>
             </div>
         </div>
     </div>

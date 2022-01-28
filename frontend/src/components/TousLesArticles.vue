@@ -12,12 +12,12 @@
           <p class="likeTxt"> Like </p>
           <button class="btnDislike" v-on:click="dislike()">-</button>
         </div>
-          <router-link to="/Publier" class="btnStyle" v-on:click="repondre()"> Répondre </router-link>
+          <router-link to="/PublierReponse" class="btnStyle" v-on:click="repondre()"> Répondre </router-link>
         <div class="finArticle"></div>
-        <!--<router.push({ name: 'Article reponse' })>-->
+        <!--<router.push({ name: 'Article_reponse' })>-->
       </div>
     </div>
-  <!--<router-view name="Reponse"></router-view>-->
+  <!--<router.push({ name= "Publication" })>-->
   <div class="backgroundBtnPublier">
     <router-link to="/Publier" class="btnStyle" v-on:click="publier()"> Publier </router-link>
   </div>
