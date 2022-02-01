@@ -1,30 +1,33 @@
 <template>
     <div class="socialContainer">
+      <ToutBete :firstname="firstname">
+
+      </ToutBete>
       <div class="blocContainer">
         <div>
           <p class="textStyle"> Firstname </p>
-          <input type="text" v-model="firstname">
-          <p id="firstNameErrorMsg" v-bind:valueFN="option.value"></p>
+          <input type="text" id="firstname" v-model="firstname">
+          <p id="firstNameErrorMsg"></p>
         </div>
         <div>
           <p class="textStyle"> Lastname </p>
-          <input type="text" v-model="lastname">
-          <p id="lastNameErrorMsg" v-bind:valueLN="option.value"></p>
+          <input type="text" id="lastname" v-model="lastname">
+          <p id="lastNameErrorMsg"></p>
         </div>
         <div>
           <p class="textStyle"> Email </p>
-          <input type="text" v-model="email">
-          <p id="emailErrorMsg" v-bind:valueEmail="option.value"></p>
+          <input type="text" id="email" v-model="email">
+          <p id="emailErrorMsg"></p>
         </div>
         <div>
           <p class="textStyle"> Username </p>
-          <input type="text" v-model="username">
-          <p id="usernameErrorMsg" v-bind:valueUsername="option.value"></p>
+          <input type="text" id="username" v-model="username">
+          <p id="usernameErrorMsg"></p>
         </div>
         <div>
           <p class="textStyle"> Mot de passe </p>
-          <input type="text" class="marginBottom" v-model="password">
-          <p id="passwordErrorMsg"  v-bind:valuePass="option.value"></p>
+          <input type="text" id="password" v-model="password">
+          <p id="passwordErrorMsg" class="marginBottom"></p>
         </div>
         <div>
           <button class="btnStyle" v-on:click="creerCompte()"> Créer un compte </button>
@@ -34,9 +37,11 @@
 </template>
 
 <script>
+import ToutBete from './ToutBete.vue';
 export default {
   name: 'Inscription',
-  /*data() {
+  components: { ToutBete },
+  data() {
     return {
       firstname: "",
       lastname: "",
@@ -45,44 +50,62 @@ export default {
       email: "",
     }
   },
-  props: [
-    valueFN,
-    valueLN,
-    valueUsername,
-    valuePass,
-    valueEmail,
-  ],
-  }
+  
   methods: {
-    creerCompte = function() {
-      var masqueCaractere = /^[a-zA-Z0-9- ']+$/g;
-      var masqueEmail = /[a-zA-Z0-9_\.\+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-\.]+/;
+    
+    creerCompte(){
 
-      if (masqueCaractere.test(firstName) && masqueCaractere.test(lastName) && masqueCaractere.test(Username) && masqueCaractere.test(password) && masqueEmail.test(email)) {
-        var contact = {
-          firstName,
-          lastName,
-          username,
-          password,
-          email,
-          }
+      var firstname = document.querySelector('#firstname').value;
+      var lastname = document.querySelector('#lastname').value;
+      var username = document.querySelector('#username').value;
+      var password = document.querySelector('#password').value;
+      var email = document.querySelector('#email').value;
+      
+      var masqueCaractere = /^[a-zA-Z0-9- ']+$/g;
+      var masqueEmail = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+/;
+
+      if (masqueCaractere.test(firstname) && masqueCaractere.test(lastname) && masqueCaractere.test(username) && masqueCaractere.test(password) && masqueEmail.test(email)) {
+
+        //Constante options de la methode post
+        const options = {
+          method: 'POST',
+          body: JSON.stringify(this.data),
+          headers: {
+              'Accept': 'application/json', 
+              "Content-Type": "application/json", 
+          },
+        };
+
+        //On interroge l'api avec la methode post
+        axios.post("http://localhost:8080/groupomania/auth", options)
+          .then((response) => response.json())
+
+          .then((data) => {
+            //On redirige vers la page de connexion.vue
+            document.location.href = '../components/connexion.vue' + '?id=' + data.id;
+          })
+
+          .catch(function(err) {
+            // Une erreur est survenue
+          });
+    
         } else {
-          var pErrorFirstNameMsg = valueFN;
-          var pErrorLastNameMsg = valueLN;
-          var pErrorUsernameMsg = valueU;
-          var pErrorPasswordMsg = valuePass;
-          var pErrorEmailMsg = valueEmail;
+          var pErrorFirstNameMsg = document.querySelector('#firstNameErrorMsg');
+          var pErrorLastNameMsg = document.querySelector('#lastNameErrorMsg');
+          var pErrorUsernameMsg = document.querySelector('#usernameErrorMsg');
+          var pErrorPasswordMsg = document.querySelector('#passwordErrorMsg');
+          var pErrorEmailMsg = document.querySelector('#emailErrorMsg');
 
           pErrorFirstNameMsg.innerText = "Votre prénom ne doit pas contenir de caractères interdits.";
           pErrorLastNameMsg.innerText = "Votre Nom ne doit pas contenir de caractères interdits.";
-          pErrorUsernameMsg.innerText = "Votre adresse ne doit pas contenir de caratères spéciaux.";
-          pErrorPasswordMsg.innerText = "Votre ville ne doit pas contenir de caractères interdits.";
+          pErrorUsernameMsg.innerText = "Votre username ne doit pas contenir de caratères spéciaux.";
+          pErrorPasswordMsg.innerText = "Votre mot de passe ne doit pas contenir de caractères interdits.";
           pErrorEmailMsg.innerText = "Votre Email n'est pas valide.";
           return false;
           }
-    }*/
-  }
-
+    }
+  },
+}
 </script>
 
 <style>
@@ -125,33 +148,39 @@ export default {
     box-shadow: 3px 3px 3px grey;
     z-index: 1;
     position: relative;
-    &:hover
-    {
-        box-shadow: 3px 3px 3px grey;
-        &::after
-        {
-            opacity: 1;
-        }
-    }
-    &::after
-    {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        border-radius: 20px;
-        background: linear-gradient(darken(#0065FC, 8) 0%, lighten(#08adee, 4) 100%);
-        opacity: 0;
-        z-index: -1;
-        transition: opacity 500ms;
-    }
 }
+
+.btnStyle:hover
+  {
+    box-shadow: 3px 3px 3px grey;
+  }
+
+.btnStyle::after
+  {
+    opacity: 1;
+  }
+    
+.btnStyle::after
+  {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 20px;
+    background: linear-gradient(darken(#0065FC, 8) 0%, lighten(#08adee, 4) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 500ms;
+  }
 
 .marginBottom {
   margin-bottom: 40px;
 }
 
+#firstNameErrorMsg, #lastNameErrorMsg, #usernameErrorMsg, #passwordErrorMsg, #emailErrorMsg {
+  color: red;
+}
 
 </style>

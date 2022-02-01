@@ -14,7 +14,6 @@
         </div>
           <router-link to="/PublierReponse" class="btnStyle" v-on:click="repondre()"> Répondre </router-link>
         <div class="finArticle"></div>
-        <!--<router.push({ name: 'Article_reponse' })>-->
       </div>
     </div>
   <!--<router.push({ name= "Publication" })>-->
@@ -28,6 +27,13 @@
 
 export default {
   name: 'TousLesArticles',
+  //components: {},
+  //props: {},
+  //methods: {},
+  //mounted() {
+    //console.log('le composant vient dapparaitre');
+    //axios.gettouslesarticles
+  //}
 }
 
 </script>
@@ -67,18 +73,20 @@ export default {
 
 .btnLike {
   transition: all 400ms;
-    &:hover {
-      background-color: #86fc00;
-      color: white;
-    }
+}
+
+.btnLike:hover {
+  background-color: #86fc00;
+  color: white;
 }
 
 .btnDislike {
   transition: all 400ms;
-    &:hover {
-      background-color: tomato;
-      color: white;
-    }
+}
+
+.btnDislike:hover {
+  background-color: tomato;
+  color: white;
 }
 
 .btnStyle
@@ -97,29 +105,32 @@ export default {
     box-shadow: 3px 3px 3px grey;
     z-index: 1;
     position: relative;
-    &:hover
-    {
-        box-shadow: 3px 3px 3px grey;
-        &::after
-        {
-            opacity: 1;
-        }
-    }
-    &::after
-    {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        border-radius: 20px;
-        background: linear-gradient(darken(#0065FC, 8) 0%, lighten(#08adee, 4) 100%);
-        opacity: 0;
-        z-index: -1;
-        transition: opacity 500ms;
-    }
 }
+
+.btnStyle:hover
+  {
+    box-shadow: 3px 3px 3px grey;
+  }
+
+.btnStyle::after
+  {
+    opacity: 1;
+  }
+    
+.btnStyle::after
+  {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 20px;
+    background: linear-gradient(darken(#0065FC, 8) 0%, lighten(#08adee, 4) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 500ms;
+  }
 
 .finArticle {
   width: 100%;

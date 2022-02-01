@@ -2,9 +2,9 @@
     <div class="socialContainer">
       <div class="blocContainer">
         <p class="textStyle"> Email </p>
-        <input type="text" v-model="email2">
+        <input type="text" id="email2" v-model="email2">
         <p class="textStyle"> Mot de passe </p>
-        <input type="text" class="marginBottom" v-model="password2">
+        <input type="text" id="password2" class="marginBottom" v-model="password2">
         <div>
           <button class="btnStyle" v-on:click="connecter()"> Connexion </button>
         </div>
@@ -17,13 +17,23 @@
 
 export default {
   name: 'Connexion',
-  /*props: [
+  /*component: {
+    Inscription,
+  }
+  props: [
     email2,
     password2,
-  ]
+  ],
   methods: {
-    connecter : function () {
-      if (email == email2 && password == password2) {
+    connecter() {
+
+      var password2 = document.querySelector('#password2').value;
+      var email2 = document.querySelector('#email2').value;
+
+      var masqueCaractere = /^[a-zA-Z0-9- ']+$/g;
+      var masqueEmail = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+/;
+
+      if (masqueCaractere.test(password2) && masqueEmail.test(email2) && email === email2 && password === password2) {
         document.location.href = "./components/TousLesArticles.vue";
       }
     }
@@ -73,29 +83,32 @@ export default {
     box-shadow: 3px 3px 3px grey;
     z-index: 1;
     position: relative;
-    &:hover
-    {
-        box-shadow: 3px 3px 3px grey;
-        &::after
-        {
-            opacity: 1;
-        }
-    }
-    &::after
-    {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        border-radius: 20px;
-        background: linear-gradient(darken(#0065FC, 8) 0%, lighten(#08adee, 4) 100%);
-        opacity: 0;
-        z-index: -1;
-        transition: opacity 500ms;
-    }
 }
+
+.btnStyle:hover
+  {
+    box-shadow: 3px 3px 3px grey;
+  }
+
+.btnStyle::after
+  {
+    opacity: 1;
+  }
+    
+.btnStyle::after
+  {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 20px;
+    background: linear-gradient(darken(#0065FC, 8) 0%, lighten(#08adee, 4) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 500ms;
+  }
 
 .marginBottom {
   margin-bottom: 40px;

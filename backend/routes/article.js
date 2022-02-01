@@ -8,7 +8,7 @@ const articleCtrl = require('../controllers/article');
 const auth = require('../middleware/auth');
 const multer = require('../middleware/multer-config');
 
-//Routes vers /api/articles/
+//Routes vers /groupomania/articles/
 router.get('/', auth, articleCtrl.getAllArticles);
 
 router.post('/', auth, multer, articleCtrl.createArticle);
