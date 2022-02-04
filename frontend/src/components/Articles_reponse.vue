@@ -1,13 +1,13 @@
 <template>
     <div>
       <div class="userStyle"> Username </div>
-      <p> {{ publication }} </p>
+      <p> {{ publicationrep }} </p>
       <div class="row">
         <button class="btnLike">+</button>
         <p class="likeTxt"> Like </p>
         <button class="btnDislike">-</button>
       </div>
-      <button class="btnStyle"> Répondre </button>
+      <router-link to="/publierReponse" class="btnStyle"> Répondre </router-link>
       <div class="finArticle"></div>
     </div>
 </template>

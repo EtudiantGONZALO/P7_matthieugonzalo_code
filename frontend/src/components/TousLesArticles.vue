@@ -12,14 +12,14 @@
           <p class="likeTxt"> Like </p>
           <button class="btnDislike" v-on:click="dislike()">-</button>
         </div>
-          <router-link to="/PublierReponse" class="btnStyle" v-on:click="repondre()"> Répondre </router-link>
+          <router-link to="/PublierReponse" class="btnStyle"> Répondre </router-link>
         <div class="finArticle"></div>
         <router-link :to="{ name: 'Publication' }"></router-link>
       </div>
     </div>
     <router-link :to="{ name: 'TousLesArticles' }"></router-link>
   <div class="backgroundBtnPublier">
-    <router-link to="/Publier" class="btnStyle" v-on:click="publier()"> Publier </router-link>
+    <router-link to="/Publier" class="btnStyle"> Publier </router-link>
   </div>
 </div>
 </template>

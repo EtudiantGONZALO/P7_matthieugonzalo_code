@@ -8,7 +8,7 @@
                 <input type="text" v-model="photo">
             </div>
             <div>
-                <button class="btnStyle" v-on:click="editerReponse()"> Publier </button>
+                <button to="/publierReponse" class="btnStyle" v-on:click="editerReponse()"> Publier </button>
             </div>
         </div>
     </div>

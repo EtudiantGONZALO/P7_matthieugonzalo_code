@@ -5,7 +5,7 @@ import Connexion from "../components/Connexion.vue";
 import Publier from "../components/Publier.vue";
 import PublierReponse from "../components/Publier_reponse.vue";
 import VueRouter from 'vue-router';
-import Article_reponse from "../components/Article_reponse.vue";
+import Articles_reponse from "../components/Articles_reponse.vue";
 import Articles from "../components/Articles.vue";
 
 const routes = [
@@ -15,7 +15,7 @@ const routes = [
     { path: '/publier', component: Publier },
     { path: '/publierReponse', component: PublierReponse },
     { path: '/article/', name: 'TouslesArticles', component: Articles },
-    { path: '/articleReponse/', name: 'Publication', component: Article_reponse },
+    { path: '/articleReponse/', name: 'Publication', component: Articles_reponse },
   ]
   
   // 3. Create the router instance and pass the `routes` option

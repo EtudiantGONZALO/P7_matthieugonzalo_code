@@ -9,7 +9,7 @@
                     <p class="likeTxt"> Like </p>
                     <button class="btnDislike">-</button>
                 </div>
-                <button class="btnStyle"> Répondre </button>
+                <router-link to="/publier" class="btnStyle"> Répondre </router-link>
                 <div class="finArticle"></div>
             </div>
         </div>
