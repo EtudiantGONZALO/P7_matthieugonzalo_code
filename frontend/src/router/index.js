@@ -14,8 +14,8 @@ const routes = [
     { path: '/login', component: Connexion },
     { path: '/publier', component: Publier },
     { path: '/publierReponse', component: PublierReponse },
-    { path: '/article/', name: 'TouslesArticles', component: Articles },
-    { path: '/articleReponse/', name: 'Publication', component: Articles_reponse },
+    { path: '/article/touslesarticles', name: 'TouslesArticles', component: Articles },
+    { path: '/articleReponse/touslesarticles', name: 'Publication', component: Articles_reponse },
   ]
   
   // 3. Create the router instance and pass the `routes` option

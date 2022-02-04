@@ -3,9 +3,9 @@
       <div class="userStyle"> Username </div>
       <p> {{ publicationrep }} </p>
       <div class="row">
-        <button class="btnLike">+</button>
+        <button class="btnLike" v-on:click="like()">+</button>
         <p class="likeTxt"> Like </p>
-        <button class="btnDislike">-</button>
+        <button class="btnDislike" v-on:click="dislike()">-</button>
       </div>
       <router-link to="/publierReponse" class="btnStyle"> Répondre </router-link>
       <div class="finArticle"></div>
@@ -17,16 +17,16 @@ import PublierReponse from './Publier_reponse.vue';
 
 export default {
   name: 'ArticlesReponse',
-  //component: {
-    //PublierReponse,
-  //},
-  //props: [
-    //'publicationrep',
-    //'photorep',
-    //],
-  //methods: {
-          //this.$router.push({name: 'Publication'});
-  //}
+  component: {
+    PublierReponse,
+  },
+  props: [
+    'publicationrep',
+    'photorep',
+    ],
+  mounted() {
+          this.$router.push({name: 'Publication'});
+  }
 }
 
 </script>
