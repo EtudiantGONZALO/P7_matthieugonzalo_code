@@ -14,9 +14,10 @@
         </div>
           <router-link to="/PublierReponse" class="btnStyle" v-on:click="repondre()"> Répondre </router-link>
         <div class="finArticle"></div>
+        <router-link :to="{ name: 'Publication' }"></router-link>
       </div>
     </div>
-  <!--<router.push({ name= "Publication" })>-->
+    <router-link :to="{ name: 'TousLesArticles' }"></router-link>
   <div class="backgroundBtnPublier">
     <router-link to="/Publier" class="btnStyle" v-on:click="publier()"> Publier </router-link>
   </div>
@@ -25,14 +26,23 @@
 
 <script>
 
+import Publier from './Publier.vue';
 export default {
   name: 'TousLesArticles',
-  //components: {},
-  //props: {},
+  components: {
+    PublierReponse,
+    Publier,
+  },
+  //props: {
+    //publicationrep,
+    //photorep,
+    //publication,
+    //photo,
+  //},
   //methods: {},
   //mounted() {
     //console.log('le composant vient dapparaitre');
-    //axios.gettouslesarticles
+    //axios.get("http://localhost:8080/groupomaniafriend/articles")
   //}
 }
 

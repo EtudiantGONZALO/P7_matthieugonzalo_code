@@ -5,11 +5,11 @@
                 <div class="userStyle"> Username </div>
                 <p> {{ publication }} </p>
                 <div class="row">
-                    <button class="btnLike" v-on:click="like()">+</button>
+                    <button class="btnLike">+</button>
                     <p class="likeTxt"> Like </p>
-                    <button class="btnDislike" v-on:click="dislike()">-</button>
+                    <button class="btnDislike">-</button>
                 </div>
-                <button class="btnStyle" v-on:click="repondre()"> Répondre </button>
+                <button class="btnStyle"> Répondre </button>
                 <div class="finArticle"></div>
             </div>
         </div>
@@ -23,6 +23,13 @@ export default {
   name: 'Articles',
   //component: {
     //Publier,
+  //},
+  //props: [
+    //publication,
+    //photo,
+  //],
+  //methods: {
+          //this.$router.push({name: 'TousLesArticles'});
   //}
 }
 

@@ -9,13 +9,13 @@ import Article_reponse from "../components/Article_reponse.vue";
 import Articles from "../components/Articles.vue";
 
 const routes = [
-    { path: '/', name: 'TousLesArticles', component: TousLesArticles },
+    { path: '/', component: TousLesArticles },
     { path: '/signup', component: Inscription },
     { path: '/login', component: Connexion },
     { path: '/publier', component: Publier },
     { path: '/publierReponse', component: PublierReponse },
-    { path: '/article', component: Articles },
-    { path: '/articleReponse', component: Article_reponse },
+    { path: '/article/', name: 'TouslesArticles', component: Articles },
+    { path: '/articleReponse/', name: 'Publication', component: Article_reponse },
   ]
   
   // 3. Create the router instance and pass the `routes` option

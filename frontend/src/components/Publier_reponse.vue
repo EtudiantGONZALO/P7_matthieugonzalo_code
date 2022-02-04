@@ -18,18 +18,45 @@
 
 export default {
   name: 'PublierReponse',
-  //props: [
-    //'publication',
-    //'photo',
-    //],
+  props: [
+    'publicationrep',
+    'photorep',
+    ],
   methods: {
     editerReponse() {
-      //axios.post mon article >> ça part sur le serveur
-      //>>le serveur te renvoie une réponse 200 donc on redirige
-      this.$router.push({name: 'TousLesArticles'});
+      var publicationrep = this.publicationrep;
+      var photorep = this.photorep;
+      
+      const option = {
+        publicationrep,
+        photorep,
+      };
+
+      const options = {
+          method: 'POST',
+          body: JSON.stringify(option),
+          headers: {
+              'Accept': 'application/json', 
+              "Content-Type": "application/json", 
+          },
+        };
+
+      axios.post("http://localhost:8080/groupomaniafriend/articles", options)
+        .then((response) => response.json())
+
+        .then((data) => {
+      
+          document.location.href = '../components/Articles_reponse.vue';
+        })
+
+        .catch(function(err) {
+            // Une erreur est survenue
+        });
     }
-  }  
+  }
 }
+   
+
 
 </script>
 

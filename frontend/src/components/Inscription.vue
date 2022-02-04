@@ -3,7 +3,7 @@
       <ToutBete :firstname="firstname">
 
       </ToutBete>
-      <div class="blocContainer">
+      <form method="get" class="blocContainer">
         <div>
           <p class="textStyle"> Firstname </p>
           <input type="text" id="firstname" v-model="firstname">
@@ -16,7 +16,7 @@
         </div>
         <div>
           <p class="textStyle"> Email </p>
-          <input type="text" id="email" v-model="email">
+          <input type="email" id="email" v-model="email">
           <p id="emailErrorMsg"></p>
         </div>
         <div>
@@ -30,9 +30,9 @@
           <p id="passwordErrorMsg" class="marginBottom"></p>
         </div>
         <div>
-          <button class="btnStyle" v-on:click="creerCompte()"> Créer un compte </button>
+          <button type="submit" class="btnStyle" v-on:click="creerCompte()"> Créer un compte </button>
         </div>
-      </div>
+      </form>
     </div>
 </template>
 
@@ -82,7 +82,7 @@ export default {
 
           .then((data) => {
             //On redirige vers la page de connexion.vue
-            document.location.href = '../components/connexion.vue' + '?id=' + data.id;
+            document.location.href = '../components/connexion.vue';
           })
 
           .catch(function(err) {
