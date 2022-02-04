@@ -25,7 +25,7 @@
           <p id="usernameErrorMsg"></p>
         </div>
         <div>
-          <p class="textStyle"> Mot de passe </p>
+          <p class="textStyle"> Password </p>
           <input type="text" id="password" v-model="password">
           <p id="passwordErrorMsg" class="marginBottom"></p>
         </div>
@@ -46,8 +46,8 @@ export default {
       firstname: "",
       lastname: "",
       username: "",
-      password: "",
       email: "",
+      password: "",
     }
   },
   
@@ -58,8 +58,8 @@ export default {
       var firstname = document.querySelector('#firstname').value;
       var lastname = document.querySelector('#lastname').value;
       var username = document.querySelector('#username').value;
-      var password = document.querySelector('#password').value;
       var email = document.querySelector('#email').value;
+      var password = document.querySelector('#password').value;
       
       var masqueCaractere = /^[a-zA-Z0-9- ']+$/g;
       var masqueEmail = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+/;
@@ -77,7 +77,7 @@ export default {
         };
 
         //On interroge l'api avec la methode post
-        axios.post("http://localhost:8080/groupomania/auth", options)
+        axios.post("http://localhost:8080/groupomaniafriend/auth", options)
           .then((response) => response.json())
 
           .then((data) => {
@@ -93,14 +93,14 @@ export default {
           var pErrorFirstNameMsg = document.querySelector('#firstNameErrorMsg');
           var pErrorLastNameMsg = document.querySelector('#lastNameErrorMsg');
           var pErrorUsernameMsg = document.querySelector('#usernameErrorMsg');
-          var pErrorPasswordMsg = document.querySelector('#passwordErrorMsg');
           var pErrorEmailMsg = document.querySelector('#emailErrorMsg');
+          var pErrorPasswordMsg = document.querySelector('#passwordErrorMsg');
 
           pErrorFirstNameMsg.innerText = "Votre prénom ne doit pas contenir de caractères interdits.";
           pErrorLastNameMsg.innerText = "Votre Nom ne doit pas contenir de caractères interdits.";
           pErrorUsernameMsg.innerText = "Votre username ne doit pas contenir de caratères spéciaux.";
-          pErrorPasswordMsg.innerText = "Votre mot de passe ne doit pas contenir de caractères interdits.";
           pErrorEmailMsg.innerText = "Votre Email n'est pas valide.";
+          pErrorPasswordMsg.innerText = "Votre password ne doit pas contenir de caratères spéciaux.";
           return false;
           }
     }

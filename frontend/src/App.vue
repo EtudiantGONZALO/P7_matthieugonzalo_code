@@ -5,6 +5,7 @@
         <img alt="Vue logo" src="./assets/icon-left-font-monochrome-white.png" class="logo">
       </div>
       <div class="flexEvenly">
+        <router-link to="/" class="textDecoration">Articles</router-link>
         <router-link to="/signup" class="textDecoration">Inscription</router-link>
         <router-link to="/login" class="textDecoration">Connexion</router-link>
       </div>

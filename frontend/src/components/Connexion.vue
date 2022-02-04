@@ -3,7 +3,7 @@
       <div class="blocContainer">
         <p class="textStyle"> Email </p>
         <input type="text" id="email2" v-model="email2">
-        <p class="textStyle"> Mot de passe </p>
+        <p class="textStyle"> Password </p>
         <input type="text" id="password2" class="marginBottom" v-model="password2">
         <div>
           <button class="btnStyle" v-on:click="connecter()"> Connexion </button>

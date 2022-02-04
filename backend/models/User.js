@@ -1,14 +1,13 @@
 //import des logiciel npm
-const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
+const mysql = require('mysql');
+const MySQLSchema = require("mysql-schema");
 
 //schéma d'une identité
-const userSchema = mongoose.Schema({
+MySQLSchema.getSchema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true }
 });
 
-userSchema.plugin(uniqueValidator);
 
 //exportation du schéma
-module.exports = mongoose.model('User', userSchema);
+MySQLSchema.stringifyFn('User', MySQLSchema);

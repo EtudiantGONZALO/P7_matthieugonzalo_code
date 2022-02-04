@@ -5,7 +5,7 @@ const router = express.Router();
 //import du controllers
 const userCtrl = require('../controllers/user');
 
-//routes vers /groupomania/auth/
+//routes vers /groupomaniafriend/auth/
 router.post('/signup', userCtrl.signup);
 router.post('/', userCtrl.login);
 

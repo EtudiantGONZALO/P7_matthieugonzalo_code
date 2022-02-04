@@ -16,7 +16,7 @@ exports.createArticle = (req, res, next) => {
     usersDisliked : [],
   });
   article.save()
-    .then(() => res.status(201).json({message: 'Objet enregistré !'}))
+    .then(() => res.status(201).json({message: 'Article enregistré !'}))
     .catch(error => res.status(400).json({error}));
 };
 
@@ -60,25 +60,25 @@ exports.likeStatus = async (req, res, next) => {
             break;
           }
     
-          // Cancel Like
+          // Supprime Like
           case 0: 
           if (article.usersLiked.includes(userID) ) {
             await Articles.updateOne(
               { _id: ArticleID }, 
               {$pull: { usersLiked : userID }, $inc: { likes : -1 } }
             )
-            res.status(200).json( {message : "Cancel Like !"}); 
+            res.status(200).json( {message : "Supprime Like !"}); 
             break;
           }
     
-          // Cancel Dislike 
+          // Supprime Dislike 
           case 0: 
           if (article.usersDisliked.includes(userID) ) {
              await Articles.updateOne(
               { _id: ArticleID }, 
               {$pull: { usersDisliked : userID }, $inc: { dislikes : -1 } }
             )
-            res.status(200).json( {message : "Cancel Dislike !"}); 
+            res.status(200).json( {message : "Supprime Dislike !"}); 
             break;
           }
           default : 

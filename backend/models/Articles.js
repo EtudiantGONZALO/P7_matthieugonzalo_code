@@ -1,9 +1,10 @@
 //import du logiciel npm
-const mongoose = require('mongoose');
+const mysql = require('mysql');
+const MySQLSchema = require("mysql-schema");
 
 //schéma d'une sauce
-const articleSchema = mongoose.Schema({
-  userId: { type: String, required: true },
+MySQLSchema.getSchema({
+  id: { type: String, required: true },
   description: { type: String, required: true },
   imageUrl: { type: String, required: true },
   likes: { type: Number, required: true },
@@ -13,4 +14,4 @@ const articleSchema = mongoose.Schema({
 });
 
 //exportation du schéma
-module.exports = mongoose.model('Articles', articleSchema);
+MySQLSchema.stringifyFn('Articles', MySQLSchema);
