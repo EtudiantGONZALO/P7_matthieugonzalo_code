@@ -1,9 +1,9 @@
 <template>
     <div class="socialContainer">
       <div class="blocContainer">
-        <p class="textStyle"> Email </p>
+        <h1 class="textStyle"> Email </h1>
         <input type="email" id="email" name="user_email" placeholder="email@exemple.com" v-model="emailValue"/>
-        <p class="textStyle"> Password </p>
+        <h1 class="textStyle"> Password </h1>
         <input type="text" id="password" name="user_password" placeholder="********" class="marginBottom" v-model="passwordValue">
         <div class="flexRow">
           <button class="btnStyle" v-on:click="connecter()"> Connexion </button>
@@ -60,7 +60,7 @@ export default {
         location.href = "/login"
       }
     },
-  } 
+  }, 
 }
 
 

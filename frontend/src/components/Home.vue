@@ -1,14 +1,15 @@
 <template>
 <div>
   <div class="socialContainer">
-    <div class="blocContainer">
-      <textarea type="article" class="sizeInput" name="article" placeholder="Ecrivez ce que vous voulez publier" v-model="text" rows="12" @input="check"/>
-      <div class="marginBottom">
-        <input type="file" name="image" @change="onFileSelected">
-        <button @click="$refs.fileInput.click()">Ajouter une photo</button>
-      </div>
+    <div class="blocContainer flexColumn">
+      <textarea type="article" class="sizeInput" placeholder="Ecrivez ce que vous voulez publier" v-model="text" rows="12" @input="check"/>
       <div>
-        <button class="btnStyle" v-on:click="createArticle()" type="submit" :disabled="isDisabled"> Publier </button>
+      <input type="file" @change="onFileSelected" accept="image/*">
+      <button v-on:click="$refs.fileInput.click()">Ajouter une photo</button>
+      <div style="display: none">{{ selectedFile.name }}</div>
+      </div>
+      <div class="marginTop">
+        <button class="btnStyle" v-on:click="createArticle()" :disabled="isDisabled"> Publier </button>
       </div>
     </div>
   </div>
@@ -48,9 +49,9 @@ export default {
       myForm.append("imageUrl", this.selectedFile);
 
       axios
-        .post("http://localhost:3000/api/article", myForm, config)
+        .post("http://localhost:3000/api/articles", myForm, config)
         .then(() => {
-          location.reload();
+          this.$router.push("/article/:id");
         })
         .catch((error) => console.log(error));
     },
@@ -80,7 +81,7 @@ export default {
   background-color: grey;
 }
 
-.blocArticleContainer {
+.blocContainer {
   background-color: lightgrey;
   border: 10px solid black;
   text-align: center;
@@ -88,12 +89,11 @@ export default {
   height: 100%;
 }
 
-.userStyle {
-  height: 20px;
-  font-size: 17px;
-  color: white;
-  background-color: #0065FC;
-  border-bottom: 2px solid gold;
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .btnLike {
@@ -178,8 +178,8 @@ export default {
   outline: none;
 }
 
-.marginBottom {
-  margin-bottom: 40px;
+.marginTop {
+  margin-top: 40px;
 }
 
 </style>

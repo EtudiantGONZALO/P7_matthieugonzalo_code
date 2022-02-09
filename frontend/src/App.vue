@@ -6,7 +6,7 @@
       </div>
       <div class="flexEvenly dore">
         <router-link to="/home" class="textDecoration">Articles</router-link>
-        <router-link to="/signup" class="textDecoration">Inscription</router-link>
+        <router-link to="/" class="textDecoration">Inscription</router-link>
         <router-link to="/login" class="textDecoration">Connexion</router-link>
       </div>
     </div>

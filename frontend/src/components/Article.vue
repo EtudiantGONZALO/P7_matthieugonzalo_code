@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="socialContainer">
+        <Article class="socialContainer">
             <div class="blocArticleContainer">
                 <div class="userStyle"> {{ user.username}} </div>
                 <p> {{ articles.text }} </p>
@@ -8,7 +8,7 @@
                 <router-link to="/reponse" class="btnStyle" v-on:click="reponse()"> Répondre </router-link>
                 <div class="finArticle"></div>
             </div>
-        </div>
+        </Article>
     </div>
 </template>
 

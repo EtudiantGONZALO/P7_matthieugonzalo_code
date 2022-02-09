@@ -1,24 +1,24 @@
 <template>
     <div class="socialContainer">
-      <form class="blocContainer">
+      <div class="blocContainer">
         <div>
           <h1 class="textStyle"> Email </h1>
-          <input type="email" id="email" name="user_email" placeholder="email@exemple.com" v-model="emailValue"/>
+          <input type="email" id="email" placeholder="email@exemple.com" v-model="emailValue"/>
           <p id="emailErrorMsg"></p>
         </div>
         <div>
           <h1 class="textStyle"> Username </h1>
-          <input type="text" id="username" name="user_username" placeholder="Utilisateur01" v-model="usernameValue"/>
+          <input type="text" id="username" placeholder="Utilisateur01" v-model="usernameValue"/>
           <p id="usernameErrorMsg"></p>
         </div>
         <div>
           <h1 class="textStyle"> Password </h1>
-          <input type="password" id="password" name="user_password" placeholder="********" v-model="passwordValue"/>
+          <input type="password" id="password" placeholder="********" v-model="passwordValue"/>
         </div>
         <div>
-          <button type="submit" class="btnStyle" v-on:click="creerCompte()"> Créer un compte </button>
+          <button class="btnStyle" v-on:click="creerCompte()"> Créer un compte </button>
         </div>
-      </form>
+      </div>
     </div>
 </template>
 
@@ -37,39 +37,34 @@ export default {
   methods: {
 
     creerCompte() {
+      var username = document.querySelector('#username').value;
+      var email = document.querySelector('#email').value;
+          
+      var masqueCaractere = /^[a-zA-Z0-9- ']+$/g;
+      var masqueEmail = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+/;
+
+      if ( masqueCaractere.test(username) && masqueEmail.test(email)) console.log('controle');
       //On interroge l'api avec la methode post
-      axios({
-        method: "POST",
-        url: "http://localhost:3000/api/auth/signup",
-        data: {
+      axios.post("http://localhost:3000/api/auth/signup", {
           username: this.usernameValue,
           email: this.emailValue,
           password: this.passwordValue,
-        },
-        headers: { "Content-Type": "application/json" },
-      })
+        })          
         .then(() => {
-          var username = document.querySelector('#username').value;
-          var email = document.querySelector('#email').value;
-          
-          var masqueCaractere = /^[a-zA-Z0-9- ']+$/g;
-          var masqueEmail = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+/;
-
-      if ( masqueCaractere.test(username) && masqueEmail.test(email)) {
         //On redirige vers la page de connexion.vue
           this.$router.push("/login");
-      } else {
+        })
+        .catch(function(err) {
+            console.log(err);
+        });
+      /*} else {
           var pErrorUsernameMsg = document.querySelector('#usernameErrorMsg');
           var pErrorEmailMsg = document.querySelector('#emailErrorMsg');
 
           pErrorUsernameMsg.innerText = "Votre username ne doit pas contenir de caratères spéciaux.";
           pErrorEmailMsg.innerText = "Votre Email n'est pas valide.";
           return false;
-          }
-        })
-        .catch(function(err) {
-            // Une erreur est survenue
-        });
+        } */
     },
   }
 }
@@ -142,7 +137,7 @@ export default {
     transition: opacity 500ms;
   }
 
-.marginBottom {
+#password {
   margin-bottom: 40px;
 }
 

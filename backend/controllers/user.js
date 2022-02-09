@@ -17,7 +17,6 @@ const RegEx = complexity.create(options)
 
 //Création d'un compte
 exports.signup = (req, res, next) => {
-
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
 
@@ -27,7 +26,8 @@ exports.signup = (req, res, next) => {
                 password: hash,
                 isAdmin: false,
             });
-            if (complexity.check(req.body.password, options)) {
+            if (true) {
+                console.log(user);
                 user.save()
                     .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
                     .catch(error => res.status(400).json({ error }));
