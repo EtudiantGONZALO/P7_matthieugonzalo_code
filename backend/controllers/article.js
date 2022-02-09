@@ -1,92 +1,124 @@
-//import du modèle
-const Articles = require('../models/Articles');
+const Article = require('../models/article');
+const User = require('../models/user');
+const Comment = require('../models/comment')
+const fs = require('fs');
 
-//permet d'ajouter un article
+
+//Création d'un post
 exports.createArticle = (req, res, next) => {
-  const articleObject = JSON.parse(req.body.article);
-  delete articleObject._id;
-  const article = new Articles({
-    ...articleObject,
-    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
-    // initialise like et dislikes à 0
-    likes : 0, 
-    dislikes : 0,
-    // initialise les tableaux 
-    usersLiked : [],
-    usersDisliked : [],
-  });
-  article.save()
-    .then(() => res.status(201).json({message: 'Article enregistré !'}))
-    .catch(error => res.status(400).json({error}));
+    if (req.body) {
+        const articleObject = { ...req.body };
+        if (req.file) {
+            const article = new Article({
+                ...articleObject,
+                imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+            });
+            saveArticle(article);
+        }
+        else {
+            const article = new Article({
+                ...articleObject,
+            });
+            saveArticle(article);
+        }
+        function saveArticle(article) {
+            article.save()
+                .then(() => res.status(201).json({ message: 'Article créé !' }))
+                .catch(error => res.status(400).json({ error }))
+        }
+    }
+
+
+}
+
+//Suppression d'un post
+exports.deleteArticle = (req, res, next) => {
+    Article.findOne({
+        where: {
+            id: req.params.id
+        }
+    })
+        .then(article => {
+            //On vérifie si le post contient une image
+            if (article.imageUrl != '' || article.imageUrl != null) {
+                const filename = article.imageUrl.split('/images/')[1];
+                fs.unlink(`images/${filename}`, () => {
+                    destroyArticle(article)
+                });
+            }
+            else {
+                destroyArticle();
+            }
+        })
+        .catch(error => res.status(500).json({ error }));
+
+    function destroyArticle() {
+        //Suppresion des commentaires liés à ce post
+        Comment.destroy({
+            where: {
+                articleId: req.params.id
+            }
+        })
+        Article.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+            .then(() => res.status(200).json({ message: 'Objet supprimé !' }))
+            .catch(error => res.status(400).json({ error }));
+    }
 };
 
-//permet a tous les utilisateurs de voir tous les articles
+//Mofification d'un post
+exports.modifyArticle = (req, res, next) => {
+    //On vérifie si l'utilisateur modifie l'image du post
+    if (req.file) {
+        Article.findOne({
+            where: {
+                id: req.params.id
+            }
+        })
+            .then(article => {
+                const filename = article.imageUrl.split('/images/')[1];
+                fs.unlink(`images/${filename}`, (err) => {
+                    if (err) throw err;
+                })
+            })
+            .catch(error => res.status(400).json({ error }));
+    }
+
+
+    const articleObject = req.file ?
+        {
+            ...req.body,
+            imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        } : { ...req.body };
+
+
+    Article.update({ ...articleObject, id: req.params.id },
+        {
+            where: {
+                id: req.params.id
+            }
+        })
+        .then(() => res.status(200).json({ message: 'Objet modifié !' }))
+        .catch(error => res.status(400).json({ error }));
+};
+
+//Récupération d'un post spécifique par id
+exports.getOneArticle = (req, res, next) => {
+    Article.findOne({
+        where: { id: req.params.id },
+        include: [{ model: User, as: 'user' }],
+    })
+        .then(article => res.status(200).json(article))
+        .catch(error => res.status(404).json({ error }));
+}
+
+//Récupération de tous les posts
 exports.getAllArticles = (req, res, next) => {
-  Articles.find()
-    .then(articles => res.status(200).json(articles))
-    .catch(error => res.status(400).json({error}));
-};
-
-//permet aux utilisateurs d'utiliser le mode Like
-exports.likeStatus = async (req, res, next) => {
-
-    const likeValue = req.body.like; 
-    const userID = req.body.userId;
-    const ArticleID = req.params.id; 
-    
-    try {
-      const article = await Articles.findOne({ _id : ArticleID }) // juste un bug sur le compteur 
-      switch (likeValue) {
-        
-        // Like
-        case 1: 
-          if (!article.usersLiked.includes(userID) ) {
-            await Articles.updateOne(
-              { _id: ArticleID }, 
-              { $push: { usersLiked : userID }, $inc: { likes : 1 } }
-            )
-            res.status(200).json( {message : "Like !"}); 
-            break;
-          }
-        
-          // Dislike
-          case -1: 
-          if (!article.usersDisliked.includes(userID) ) {
-            await Articles.updateOne(
-              { _id: ArticleID }, 
-              {$push: { usersDisliked : userID }, $inc: { dislikes : 1 } }
-            )
-            res.status(200).json( {message : "Dislike !"});
-            break;
-          }
-    
-          // Supprime Like
-          case 0: 
-          if (article.usersLiked.includes(userID) ) {
-            await Articles.updateOne(
-              { _id: ArticleID }, 
-              {$pull: { usersLiked : userID }, $inc: { likes : -1 } }
-            )
-            res.status(200).json( {message : "Supprime Like !"}); 
-            break;
-          }
-    
-          // Supprime Dislike 
-          case 0: 
-          if (article.usersDisliked.includes(userID) ) {
-             await Articles.updateOne(
-              { _id: ArticleID }, 
-              {$pull: { usersDisliked : userID }, $inc: { dislikes : -1 } }
-            )
-            res.status(200).json( {message : "Supprime Dislike !"}); 
-            break;
-          }
-          default : 
-          res.status(400).json( {error : "Une erreur est arrivée !"});
-    
-      } // fin switch
-    } // fin try 
-
-    catch (error) { res.status(400).json( { error } );}
-        
+    Article.findAll(
+        { include: [{ model: User, as: 'user' }] })
+        .then(articles => res.status(201).json(articles))
+        .catch(error => res.status(400).json({ error }));
 }

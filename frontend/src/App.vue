@@ -1,11 +1,11 @@
 <template>
-<div>
-    <div class="flexBetween headerColor">
-      <div>
+<div class="backgroundBlack">
+    <div class="headerColor">
+      <div class="flexEvenly">
         <img alt="Vue logo" src="./assets/icon-left-font-monochrome-white.png" class="logo">
       </div>
-      <div class="flexEvenly">
-        <router-link to="/" class="textDecoration">Articles</router-link>
+      <div class="flexEvenly dore">
+        <router-link to="/home" class="textDecoration">Articles</router-link>
         <router-link to="/signup" class="textDecoration">Inscription</router-link>
         <router-link to="/login" class="textDecoration">Connexion</router-link>
       </div>
@@ -34,10 +34,8 @@ export default {
 
 /*------------------------Header----------------------*/
 
-.flexBetween {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.backgroundBlack {
+  background-color: black;
 }
 
 .headerColor {
@@ -48,12 +46,15 @@ export default {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  width: 30%;
+  width: 100%;
+}
+
+.dore {
+  background-color: gold;
 }
 
 .textDecoration {
   text-decoration: none;
-  color: white;
 }
 
 .logo {

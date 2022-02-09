@@ -1,31 +1,31 @@
 <template>
     <div>
-      <div class="userStyle"> Username </div>
-      <p> {{ publicationrep }} </p>
-      <div class="row">
-        <button class="btnLike" v-on:click="like()">+</button>
-        <p class="likeTxt"> Like </p>
-        <button class="btnDislike" v-on:click="dislike()">-</button>
-      </div>
-      <router-link to="/publierReponse" class="btnStyle"> Répondre </router-link>
-      <div class="finArticle"></div>
+        <div class="socialContainer">
+            <div class="blocArticleContainer">
+                <div class="userStyle"> {{ user.username}} </div>
+                <p> {{ articles.text }} </p>
+                <img :src="articles.imageUrl" />
+                <router-link to="/publier" class="btnStyle"> Répondre </router-link>
+                <div class="finArticle"></div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-import PublierReponse from './Publier_reponse.vue';
+import Publier from '../components/Publier.vue';
 
 export default {
-  name: 'ArticlesReponse',
+  name: 'Articles',
   component: {
-    PublierReponse,
+    Publier,
   },
   props: [
-    'publicationrep',
-    'photorep',
+    'publication',
+    'photo',
     ],
   mounted() {
-          this.$router.push({name: 'Publication'});
+          this.$router.push({name: 'TousLesArticles'});
   }
 }
 
@@ -58,48 +58,10 @@ export default {
   border-bottom: 2px solid gold;
 }
 
-.row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 20px;
-}
-
-.likeTxt {
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  color: white;
-  background-color: #0065FC;
-}
-
-.btnLike {
-  transition: all 400ms;
-}
-
-.btnLike:hover {
-  background-color: #86fc00;
-  color: white;
-}
-
-.btnDislike {
-  transition: all 400ms;
-}
-
-.btnDislike:hover {
-  background-color: tomato;
-  color: white;
-}
-
 .finArticle {
   width: 100%;
   height: 20px;
   border-bottom: 2px solid gold;
-}
-
-.rowEvenly {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
 }
 
 .btnStyle
@@ -144,4 +106,5 @@ export default {
     z-index: -1;
     transition: opacity 500ms;
   }
+
 </style>

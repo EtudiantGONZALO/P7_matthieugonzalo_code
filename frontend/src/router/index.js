@@ -1,21 +1,18 @@
-import TousLesArticles from "../components/TousLesArticles.vue";
-//import Articles from "../components/Articles.vue";
-import Inscription from "../components/Inscription.vue";
-import Connexion from "../components/Connexion.vue";
-import Publier from "../components/Publier.vue";
-import PublierReponse from "../components/Publier_reponse.vue";
+import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Articles_reponse from "../components/Articles_reponse.vue";
-import Articles from "../components/Articles.vue";
+import Home from "../components/Home.vue";
+import Signup from "../components/Inscription.vue";
+import Login from "../components/Connexion.vue";
+import Article from "../components/Article.vue";
+
+Vue.use(VueRouter)
 
 const routes = [
-    { path: '/', component: TousLesArticles },
-    { path: '/signup', component: Inscription },
-    { path: '/login', component: Connexion },
-    { path: '/publier', component: Publier },
-    { path: '/publierReponse', component: PublierReponse },
-    { path: '/article/touslesarticles', name: 'TouslesArticles', component: Articles },
-    { path: '/articleReponse/touslesarticles', name: 'Publication', component: Articles_reponse },
+    { path: '/home', component: Home },
+    { path: '/signup', component: Signup },
+    { path: '/login', component: Login },
+    { path: '/article/:id', component: Article },
+    //{ path: '/account', component: Account },
   ]
   
   // 3. Create the router instance and pass the `routes` option

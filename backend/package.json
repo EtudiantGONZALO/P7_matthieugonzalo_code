@@ -1,10 +1,15 @@
 {
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "code-complexity": "^4.1.0",
+    "complexity": "^0.0.6",
+    "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose-unique-validator": "^3.0.0",
     "multer": "^1.4.4",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.15.1"
   }
 }

@@ -7,13 +7,15 @@ const articleCtrl = require('../controllers/article');
 //import middleware
 const auth = require('../middleware/auth');
 const multer = require('../middleware/multer-config');
+const isOwner = require('../middleware/isOwner');
 
-//Routes vers /groupomaniafriend/articles/
-router.get('/', auth, articleCtrl.getAllArticles);
 
+//Routes vers /articles/
 router.post('/', auth, multer, articleCtrl.createArticle);
-
-router.post('/:id/like', auth, articleCtrl.likeStatus);
+router.get('/', auth, articleCtrl.getAllArticles);
+router.delete('/:id', auth, isOwner, articleCtrl.deleteArticle);
+router.get('/:id', articleCtrl.getOneArticle);
+router.put('/:id', auth, isOwner, multer, articleCtrl.modifyArticle)
 
 //export du router
 module.exports = router;

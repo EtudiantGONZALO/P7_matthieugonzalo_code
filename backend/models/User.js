@@ -1,13 +1,28 @@
-//import des logiciel npm
-const mysql = require('mysql');
-const MySQLSchema = require("mysql-schema");
+const { Sequelize, DataTypes, Op } = require('sequelize');
+const sequelize = require('../db.config')
+const Article = require('./article');
 
-//schéma d'une identité
-MySQLSchema.getSchema({
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
-});
+const User = sequelize.define('User', {
+    username: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true
+    },
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true
+    },
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    isAdmin: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+    }
+}
+);
 
 
-//exportation du schéma
-MySQLSchema.stringifyFn('User', MySQLSchema);
+module.exports = User;

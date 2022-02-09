@@ -2,42 +2,65 @@
     <div class="socialContainer">
       <div class="blocContainer">
         <p class="textStyle"> Email </p>
-        <input type="text" id="email2" v-model="email2">
+        <input type="email" id="email" name="user_email" placeholder="email@exemple.com" v-model="emailValue"/>
         <p class="textStyle"> Password </p>
-        <input type="text" id="password2" class="marginBottom" v-model="password2">
-        <div>
+        <input type="text" id="password" name="user_password" placeholder="********" class="marginBottom" v-model="passwordValue">
+        <div class="flexRow">
           <button class="btnStyle" v-on:click="connecter()"> Connexion </button>
+          <button class="btnStyle" v-on:click="supprimer()"> Supprimer compte </button>
         </div>
       </div>
     </div>
 </template>
 
 <script>
-//import Inscription from "./components/Inscription.vue"
+import axios from "axios";
 
 export default {
-  name: 'Connexion',
-  /*component: {
-    Inscription,
-  }
-  props: [
-    email2,
-    password2,
-  ],
+  name: 'Login',
+  data: function () {
+    return {
+      emailValue: "",
+      passwordValue: "",
+    };
+  },
   methods: {
     connecter() {
+      axios({
+        method: "POST",
+        url: "http://localhost:3000/api/auth/login",
+        headers: { "Content-Type": "application/json" },
+        data: { email: this.emailValue, password: this.passwordValue },
+      })
+      .then((response) => {
+        if (response.data.token) {
+          //On ajoute le token généré au localStorage
+          localStorage.setItem("user", JSON.stringify(response.data));
+          this.$router.push("/home");
+        }
+      })
+      .catch(function(err) {
+        // Une erreur est survenue
+      });
+    },
 
-      var password2 = document.querySelector('#password2').value;
-      var email2 = document.querySelector('#email2').value;
-
-      var masqueCaractere = /^[a-zA-Z0-9- ']+$/g;
-      var masqueEmail = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+/;
-
-      if (masqueCaractere.test(password2) && masqueEmail.test(email2) && email === email2 && password === password2) {
-        document.location.href = "./components/TousLesArticles.vue";
+    supprimer() {
+      const user = JSON.parse(localStorage.getItem("user"));
+      let header = {
+        headers: {
+          Authorization: "Bearer " + user.token,
+        },
+      };
+      if (this.userId = user.token) {
+      axios
+        .delete("http://localhost:3000/api/auth/users/" + this.user, header)
+        .then(() => ((location.href = "/"), localStorage.removeItem("user")))
+        .catch((error) => console.log(error));
+      } else {
+        location.href = "/login"
       }
-    }
-  }*/
+    },
+  } 
 }
 
 
@@ -65,6 +88,13 @@ export default {
 
 .textStyle {
   margin: 10px 0 10px 0;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .btnStyle

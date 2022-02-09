@@ -1,6 +1,7 @@
 <template>
-  <div @click="change()">
-      {{ toto }}{{ firstname }}
+  <div class="touslesarticles">
+      message de bienvenu
+      <article v-for="article in articles" :msg="article.msg" :like="article.like"/>
   </div>
 </template>
 
@@ -10,6 +11,7 @@ export default {
     data() {
         return {
             toto: 'Prénom :',
+            articles: undefined,
         };
     },
     props: ['firstname'],
@@ -17,6 +19,9 @@ export default {
         change() {
             this.toto = 'Nom : ';
         }
+    },
+    mounted() {
+        axios.get(touslesarticles).then(data => this.articles = data);
     }
 }
 </script>

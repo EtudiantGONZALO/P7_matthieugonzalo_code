@@ -1,32 +1,19 @@
 <template>
     <div class="socialContainer">
-      <ToutBete :firstname="firstname">
-
-      </ToutBete>
-      <form method="get" class="blocContainer">
+      <form class="blocContainer">
         <div>
-          <p class="textStyle"> Firstname </p>
-          <input type="text" id="firstname" v-model="firstname">
-          <p id="firstNameErrorMsg"></p>
-        </div>
-        <div>
-          <p class="textStyle"> Lastname </p>
-          <input type="text" id="lastname" v-model="lastname">
-          <p id="lastNameErrorMsg"></p>
-        </div>
-        <div>
-          <p class="textStyle"> Email </p>
-          <input type="email" id="email" v-model="email">
+          <h1 class="textStyle"> Email </h1>
+          <input type="email" id="email" name="user_email" placeholder="email@exemple.com" v-model="emailValue"/>
           <p id="emailErrorMsg"></p>
         </div>
         <div>
-          <p class="textStyle"> Username </p>
-          <input type="text" id="username" v-model="username">
+          <h1 class="textStyle"> Username </h1>
+          <input type="text" id="username" name="user_username" placeholder="Utilisateur01" v-model="usernameValue"/>
           <p id="usernameErrorMsg"></p>
         </div>
         <div>
-          <p class="textStyle"> Password </p>
-          <input type="text" id="password" v-model="password">
+          <h1 class="textStyle"> Password </h1>
+          <input type="password" id="password" name="user_password" placeholder="********" v-model="passwordValue"/>
           <p id="passwordErrorMsg" class="marginBottom"></p>
         </div>
         <div>
@@ -37,74 +24,58 @@
 </template>
 
 <script>
-import ToutBete from './ToutBete.vue';
+import axios from 'axios';
 export default {
-  name: 'Inscription',
-  components: { ToutBete },
+  name: 'Signup',
   data() {
     return {
-      firstname: "",
-      lastname: "",
-      username: "",
-      email: "",
-      password: "",
+      usernameValue: "",
+      emailValue: "",
+      passwordValue: "",
     }
   },
   
   methods: {
-    
-    creerCompte(){
 
-      var firstname = document.querySelector('#firstname').value;
-      var lastname = document.querySelector('#lastname').value;
-      var username = document.querySelector('#username').value;
-      var email = document.querySelector('#email').value;
-      var password = document.querySelector('#password').value;
-      
-      var masqueCaractere = /^[a-zA-Z0-9- ']+$/g;
-      var masqueEmail = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+/;
+    creerCompte() {
+      //On interroge l'api avec la methode post
+      axios({
+        method: "POST",
+        url: "http://localhost:3000/api/auth/signup",
+        data: {
+          username: this.usernameValue,
+          email: this.emailValue,
+          password: this.passwordValue,
+        },
+        headers: { "Content-Type": "application/json" },
+      })
+        .then(() => {
+          var username = document.querySelector('#username').value;
+          var email = document.querySelector('#email').value;
+          var password = document.querySelector('#password').value;
+          
+          var masqueCaractere = /^[a-zA-Z0-9- ']+$/g;
+          var masqueEmail = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+/;
 
-      if (masqueCaractere.test(firstname) && masqueCaractere.test(lastname) && masqueCaractere.test(username) && masqueCaractere.test(password) && masqueEmail.test(email)) {
-
-        //Constante options de la methode post
-        const options = {
-          method: 'POST',
-          body: JSON.stringify(this.data),
-          headers: {
-              'Accept': 'application/json', 
-              "Content-Type": "application/json", 
-          },
-        };
-
-        //On interroge l'api avec la methode post
-        axios.post("http://localhost:8080/groupomaniafriend/auth", options)
-          .then((response) => response.json())
-
-          .then((data) => {
-            //On redirige vers la page de connexion.vue
-            document.location.href = '../components/connexion.vue';
-          })
-
-          .catch(function(err) {
-            // Une erreur est survenue
-          });
-    
-        } else {
-          var pErrorFirstNameMsg = document.querySelector('#firstNameErrorMsg');
-          var pErrorLastNameMsg = document.querySelector('#lastNameErrorMsg');
+      if ( masqueCaractere.test(username) && masqueCaractere.test(password) && masqueEmail.test(email)) {
+        //On redirige vers la page de connexion.vue
+          this.$router.push("/login");
+      } else {
           var pErrorUsernameMsg = document.querySelector('#usernameErrorMsg');
           var pErrorEmailMsg = document.querySelector('#emailErrorMsg');
           var pErrorPasswordMsg = document.querySelector('#passwordErrorMsg');
 
-          pErrorFirstNameMsg.innerText = "Votre prénom ne doit pas contenir de caractères interdits.";
-          pErrorLastNameMsg.innerText = "Votre Nom ne doit pas contenir de caractères interdits.";
           pErrorUsernameMsg.innerText = "Votre username ne doit pas contenir de caratères spéciaux.";
           pErrorEmailMsg.innerText = "Votre Email n'est pas valide.";
           pErrorPasswordMsg.innerText = "Votre password ne doit pas contenir de caratères spéciaux.";
           return false;
           }
-    }
-  },
+        })
+        .catch(function(err) {
+            // Une erreur est survenue
+        });
+    },
+  }
 }
 </script>
 
@@ -179,7 +150,7 @@ export default {
   margin-bottom: 40px;
 }
 
-#firstNameErrorMsg, #lastNameErrorMsg, #usernameErrorMsg, #passwordErrorMsg, #emailErrorMsg {
+#usernameErrorMsg, #passwordErrorMsg, #emailErrorMsg {
   color: red;
 }
 
