@@ -75,37 +75,6 @@ exports.login = (req, res, next) => {
 
 }
 
-//Récupération de tous les utilisateurs
-exports.GetAllUsers = (req, res, next) => {
-    User.findAll()
-        .then(users => res.status(200).json(users))
-        .catch(error => res.status(400).json({ error }));
-}
-
-//Récupération d'un utilisateur par id
-exports.getOneUser = (req, res, next) => {
-    User.findOne({
-        where: {
-            id: req.params.id
-        }
-    })
-        .then(user => res.status(200).json(user))
-        .catch(error => res.status(400).json({ error }));
-
-}
-
-//Récupération d'un utilisateur par nom d'utilisateur
-exports.getOneUserByUsername = (req, res, next) => {
-    User.findOne({
-        where: {
-            username: req.params.username
-        }
-    })
-        .then(user => res.status(200).json(user))
-        .catch(error => res.status(400).json({ error }));
-
-}
-
 //Suppression d'un utilisateur
 exports.deleteUser = (req, res, next) => {
     //Suppression des articles créés par cet utilisateur

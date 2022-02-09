@@ -4,9 +4,8 @@
     <div class="blocContainer">
       <textarea type="article" class="sizeInput" name="article" placeholder="Ecrivez ce que vous voulez publier" v-model="text" rows="12" @input="check"/>
       <div class="marginBottom">
-        <input style="display: none" type="file" name="image" @change="onFileSelected">
+        <input type="file" name="image" @change="onFileSelected">
         <button @click="$refs.fileInput.click()">Ajouter une photo</button>
-        {{ selectedFile.name }}
       </div>
       <div>
         <button class="btnStyle" v-on:click="createArticle()" type="submit" :disabled="isDisabled"> Publier </button>
@@ -27,9 +26,7 @@ export default {
     Article
   },
   data() {
-      return { 
-          articles: String,
-          user: String, 
+      return {  
           text: "",
           selectedFile: "",
           isDisabled: true,
@@ -51,7 +48,7 @@ export default {
       myForm.append("imageUrl", this.selectedFile);
 
       axios
-        .post("http://localhost:3000/api/articles", myForm, config)
+        .post("http://localhost:3000/api/article", myForm, config)
         .then(() => {
           location.reload();
         })
