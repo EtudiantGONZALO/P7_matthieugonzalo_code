@@ -14,7 +14,6 @@
         <div>
           <h1 class="textStyle"> Password </h1>
           <input type="password" id="password" name="user_password" placeholder="********" v-model="passwordValue"/>
-          <p id="passwordErrorMsg" class="marginBottom"></p>
         </div>
         <div>
           <button type="submit" class="btnStyle" v-on:click="creerCompte()"> Créer un compte </button>
@@ -52,22 +51,19 @@ export default {
         .then(() => {
           var username = document.querySelector('#username').value;
           var email = document.querySelector('#email').value;
-          var password = document.querySelector('#password').value;
           
           var masqueCaractere = /^[a-zA-Z0-9- ']+$/g;
           var masqueEmail = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+/;
 
-      if ( masqueCaractere.test(username) && masqueCaractere.test(password) && masqueEmail.test(email)) {
+      if ( masqueCaractere.test(username) && masqueEmail.test(email)) {
         //On redirige vers la page de connexion.vue
           this.$router.push("/login");
       } else {
           var pErrorUsernameMsg = document.querySelector('#usernameErrorMsg');
           var pErrorEmailMsg = document.querySelector('#emailErrorMsg');
-          var pErrorPasswordMsg = document.querySelector('#passwordErrorMsg');
 
           pErrorUsernameMsg.innerText = "Votre username ne doit pas contenir de caratères spéciaux.";
           pErrorEmailMsg.innerText = "Votre Email n'est pas valide.";
-          pErrorPasswordMsg.innerText = "Votre password ne doit pas contenir de caratères spéciaux.";
           return false;
           }
         })

@@ -1,19 +1,5 @@
 <template>
-<div class="backgroundBlack">
-  <ul>
-    <li v-for="(article, i) in articles" :key="i">
-      <router-link :to="'/article/' + article.id" class="socialContainer">
-        <div class="blocArticleContainer">
-          <div class="userStyle">
-            {{ articles[i].user.username }}
-          </div>
-          <p> {{ articles[i].text}} </p>
-          <img :src="articles[i].imageUrl" alt="Image illustrant l'article">
-          <div class="finArticle"></div>
-        </div>
-      </router-link>
-    </li>
-  </ul>
+<div>
   <div class="socialContainer">
     <div class="blocContainer">
       <textarea type="article" class="sizeInput" name="article" placeholder="Ecrivez ce que vous voulez publier" v-model="text" rows="12" @input="check"/>
@@ -27,19 +13,23 @@
       </div>
     </div>
   </div>
+  <Article/>
 </div>
 </template>
 
 <script>
 import axios from 'axios';
+import Article from '../components/Article.vue'
 
 export default {
   name: 'Home',
+  component: {
+    Article
+  },
   data() {
-      return {
+      return { 
           articles: String,
-          user: String,
-          
+          user: String, 
           text: "",
           selectedFile: "",
           isDisabled: true,
@@ -84,10 +74,6 @@ export default {
 </script>
 
 <style>
-
-.backgroundBlack {
-  background-color: black;
-}
 
 .socialContainer {
   display: flex;  

@@ -5,7 +5,7 @@
                 <div class="userStyle"> {{ user.username}} </div>
                 <p> {{ articles.text }} </p>
                 <img :src="articles.imageUrl" />
-                <router-link to="/publier" class="btnStyle"> Répondre </router-link>
+                <router-link to="/reponse" class="btnStyle" v-on:click="reponse()"> Répondre </router-link>
                 <div class="finArticle"></div>
             </div>
         </div>
@@ -13,19 +13,19 @@
 </template>
 
 <script>
-import Publier from '../components/Publier.vue';
+import Home from '../components/Home.vue';
 
 export default {
-  name: 'Articles',
+  name: 'Article',
   component: {
-    Publier,
+    Home,
   },
   props: [
     'publication',
     'photo',
     ],
   mounted() {
-          this.$router.push({name: 'TousLesArticles'});
+          this.$router.push({name: 'Home'});
   }
 }
 
