@@ -3,15 +3,15 @@ const express = require('express');
 const router = express.Router();
 
 //import controllers
-const articleCtrl = require('../controllers/article');
+const imageCtrl = require('../controllers/image');
 //import middleware
 const auth = require('../middleware/auth');
 const multer = require('../middleware/multer-config');
 
 
 //Routes vers /articles/
-router.post('/', auth, multer, articleCtrl.createArticle);
-router.get('/', auth, articleCtrl.getAllArticles);
+router.post('/', auth, multer, imageCtrl.createImage);
+router.get('/', auth, imageCtrl.getAllImage);
 
 //export du router
 module.exports = router;

@@ -6,7 +6,6 @@ const path = require('path');
 
 const articleRoutes = require('./routes/article');
 const userRoutes = require('./routes/user');
-const commentRoutes = require('./routes/comment');
 
 
 
@@ -24,6 +23,5 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use('/api/auth', userRoutes);
 app.use('/api/articles', articleRoutes);
-app.use('/api/comments', commentRoutes);
 app.use('/images', express.static(path.join(__dirname, 'images')));
 module.exports = app;

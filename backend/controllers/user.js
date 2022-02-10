@@ -2,7 +2,6 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Article = require('../models/article');
-const Comment = require('../models/comment');
 const complexity = require('complexity');
 
 const options = {

@@ -4,12 +4,10 @@
         <div>
           <h1 class="textStyle"> Email </h1>
           <input type="email" id="email" placeholder="email@exemple.com" v-model="emailValue"/>
-          <p id="emailErrorMsg"></p>
         </div>
         <div>
           <h1 class="textStyle"> Username </h1>
           <input type="text" id="username" placeholder="Utilisateur01" v-model="usernameValue"/>
-          <p id="usernameErrorMsg"></p>
         </div>
         <div>
           <h1 class="textStyle"> Password </h1>
@@ -37,13 +35,7 @@ export default {
   methods: {
 
     creerCompte() {
-      var username = document.querySelector('#username').value;
-      var email = document.querySelector('#email').value;
-          
-      var masqueCaractere = /^[a-zA-Z0-9- ']+$/g;
-      var masqueEmail = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+/;
-
-      if ( masqueCaractere.test(username) && masqueEmail.test(email)) console.log('controle');
+      
       //On interroge l'api avec la methode post
       axios.post("http://localhost:3000/api/auth/signup", {
           username: this.usernameValue,
@@ -57,14 +49,6 @@ export default {
         .catch(function(err) {
             console.log(err);
         });
-      /*} else {
-          var pErrorUsernameMsg = document.querySelector('#usernameErrorMsg');
-          var pErrorEmailMsg = document.querySelector('#emailErrorMsg');
-
-          pErrorUsernameMsg.innerText = "Votre username ne doit pas contenir de caratères spéciaux.";
-          pErrorEmailMsg.innerText = "Votre Email n'est pas valide.";
-          return false;
-        } */
     },
   }
 }

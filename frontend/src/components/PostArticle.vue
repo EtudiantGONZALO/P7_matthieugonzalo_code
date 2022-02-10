@@ -2,10 +2,8 @@
     <div>
         <Article class="socialContainer">
             <div class="blocArticleContainer">
-                <div class="userStyle"> {{ user.username}} </div>
-                <p> {{ articles.text }} </p>
-                <img :src="articles.imageUrl" />
-                <router-link to="/reponse" class="btnStyle" v-on:click="reponse()"> Répondre </router-link>
+                <div class="userStyle"> {{ users.username }} </div>
+                <p> {{ articles.description }} </p>
                 <div class="finArticle"></div>
             </div>
         </Article>
@@ -13,19 +11,17 @@
 </template>
 
 <script>
-import Home from '../components/Home.vue';
 
 export default {
-  name: 'Article',
-  component: {
-    Home,
+  name: 'PostArticle',
+  data: function () {
+    return {
+      articles: String,
+      users: String,
+    }
   },
-  props: [
-    'publication',
-    'photo',
-    ],
-  mounted() {
-          this.$router.push({name: 'Home'});
+  mounted () {
+    this.$router.push("/touslesarticles");
   }
 }
 

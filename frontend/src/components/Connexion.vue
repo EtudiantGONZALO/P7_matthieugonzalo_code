@@ -5,9 +5,8 @@
         <input type="email" id="email" name="user_email" placeholder="email@exemple.com" v-model="emailValue"/>
         <h1 class="textStyle"> Password </h1>
         <input type="text" id="password" name="user_password" placeholder="********" class="marginBottom" v-model="passwordValue">
-        <div class="flexRow">
+        <div>
           <button class="btnStyle" v-on:click="connecter()"> Connexion </button>
-          <button class="btnStyle" v-on:click="supprimer()"> Supprimer compte </button>
         </div>
       </div>
     </div>
@@ -39,26 +38,7 @@ export default {
           this.$router.push("/home");
         }
       })
-      .catch(function(err) {
-        // Une erreur est survenue
-      });
-    },
-
-    supprimer() {
-      const user = JSON.parse(localStorage.getItem("user"));
-      let header = {
-        headers: {
-          Authorization: "Bearer " + user.token,
-        },
-      };
-      if (this.userId = user.token) {
-      axios
-        .delete("http://localhost:3000/api/auth/users/" + this.user, header)
-        .then(() => ((location.href = "/"), localStorage.removeItem("user")))
-        .catch((error) => console.log(error));
-      } else {
-        location.href = "/login"
-      }
+      .catch((error) => console.log(error));
     },
   }, 
 }
@@ -88,13 +68,6 @@ export default {
 
 .textStyle {
   margin: 10px 0 10px 0;
-}
-
-.flexRow {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 }
 
 .btnStyle
