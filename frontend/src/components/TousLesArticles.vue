@@ -8,13 +8,13 @@
       </div>
     </div>
   </div>
-  <Article v-for="article in articles" :username="users.username" :description="articles.description"/>
+  <!--<Article v-for="article in articles" :key="" :username="users.username" :description="article.description"/>-->
 </div>
 </template>
 
 <script>
 import axios from 'axios';
-import PostArticle from './components/PostArticle.vue';
+import PostArticle from '../components/PostArticle.vue';
 
 export default {
   name: 'TousLesArticles',

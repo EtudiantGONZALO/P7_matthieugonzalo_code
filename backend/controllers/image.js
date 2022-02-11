@@ -1,4 +1,4 @@
-const Img = require('../models/image');
+const Img = require('../models/article');
 const User = require('../models/user');
 const fs = require('fs');
 
