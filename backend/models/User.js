@@ -4,22 +4,16 @@ const Article = require('../models/article');
 
 const User = sequelize.define('User', {
     username: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
+        type: Sequelize.STRING
     },
     email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
+        type: Sequelize.STRING
     },
     password: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: Sequelize.STRING
     },
     isAdmin: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false
+        type: DataTypes.BOOLEAN
     }
 }
 );

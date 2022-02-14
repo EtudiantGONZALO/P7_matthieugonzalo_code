@@ -2,13 +2,11 @@
 <div>
   <div class="socialContainer">
     <div class="blocContainer flexColumn">
-      <textarea type="article" class="sizeInput" placeholder="Ecrivez ce que vous voulez publier" v-model="description" maxlength="500" rows="12"/>
-      <div class="marginTop">
-        <button class="btnStyle" v-on:click="createArticle()" :disabled="isDisabled"> Publier </button>
-      </div>
+      <textarea type="article" class="sizeInput" placeholder="Ecrivez ce que vous voulez publier" v-model="description" rows="12" @input="check"/>
+      <button class="btnStyle marginTop" v-on:click="createArticle()" type="submit" :disabled="isDisabled"> Publier </button>
     </div>
   </div>
-  <!--<Article v-for="article in articles" :key="" :username="users.username" :description="article.description"/>-->
+  <Article/>
 </div>
 </template>
 
@@ -48,6 +46,20 @@ export default {
         .then(() => {
           this.$router.push("/postarticle");
         })
+        .catch((error) => console.log(error));
+    },
+    //Affichage de tous les posts
+    displayArticles() {
+      const user = JSON.parse(localStorage.getItem("user"));
+      axios({
+        method: "GET",
+        url: "http://localhost:3000/api/articles",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + user.token,
+        },
+      })
+        .then((response) => (this.articles = response.data))
         .catch((error) => console.log(error));
     },
   }

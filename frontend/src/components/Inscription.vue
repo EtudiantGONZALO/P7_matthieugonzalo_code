@@ -36,20 +36,20 @@ export default {
   methods: {
 
     creerCompte() {
-      
-      //On interroge l'api avec la methode post
-      axios.post("http://localhost:3000/api/auth/signup", {
+      axios({
+        method: "POST",
+        url: "http://localhost:3000/api/auth/signup",
+        data: {
           username: this.usernameValue,
           email: this.emailValue,
           password: this.passwordValue,
-        })          
+        },
+        headers: { "Content-Type": "application/json" },
+      })
         .then(() => {
-        //On redirige vers la page de connexion.vue
           this.$router.push("/login");
         })
-        .catch(function(err) {
-            console.log(err);
-        });
+        .catch((error) => (console.log(error), (this.message = true)));
     },
   }
 }

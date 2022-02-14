@@ -1,9 +1,9 @@
 <template>
     <div>
-        <Article class="socialContainer">
+        <Article v-for="(article, i) in articles" :key="i" class="socialContainer">
             <div class="blocArticleContainer">
-                <div class="userStyle"> {{ users.username }} </div>
-                <p> {{ articles.description }} </p>
+                <div class="userStyle"> {{ articles[i].user.username }} </div>
+                <p> {{ articles[i].text }} </p>
                 <div class="finArticle"></div>
             </div>
         </Article>
@@ -18,6 +18,7 @@ export default {
     return {
       articles: String,
       users: String,
+      commentsLength: null,
     }
   },
   mounted () {
