@@ -1,4 +1,5 @@
 <template>
+  <div>
     <div class="socialContainer">
         <div class="blocContainer">
             <input type="file" @change="onFileSelected" accept="image/*">
@@ -6,11 +7,38 @@
             <div style="display: none">{{ selectedFile.name }}</div>
         </div>
     </div>
+    <Postimage/>
+  </div>
 </template>
 
 <script>
-export default {
+import axios from 'axios';
+import PostImage from '../components/PostImage.vue';
 
+export default {
+  name: 'ToutesLesImages',
+  component: {
+    PostImage,
+  },
+  methods:{
+    click() {
+      const user = JSON.parse(localStorage.getItem("user"));
+        axios({
+          method: "GET",
+          url: "http://localhost:3000/api/articles",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + user.token,
+          },
+        })
+          .then((response) => (this.articles = response.data))
+          .catch((error) => console.log(error));
+    },
+
+    onFileSelected(event) {
+      this.selectedFile = event.target.files[0];
+    },
+  }
 }
 </script>
 

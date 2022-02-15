@@ -22,7 +22,6 @@ export default {
   data() {
       return {  
           description: "",
-          selectedFile: "",
           isDisabled: true,
       };
   },
@@ -38,8 +37,7 @@ export default {
         },
       };
       myForm.append("userId", user.userId);
-      myForm.append("text", this.text);
-      myForm.append("imageUrl", this.selectedFile);
+      myForm.append("text", this.description);
 
       axios
         .post("http://localhost:3000/api/articles", myForm, config)
