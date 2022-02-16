@@ -109,6 +109,7 @@ exports.getOneUserByUsername = (req, res, next) => {
 
 //Suppression d'un utilisateur
 exports.deleteUser = (req, res, next) => {
+    console.log('text valide');
     //Suppression des articles créés par cet utilisateur
     Article.destroy({
         where: {

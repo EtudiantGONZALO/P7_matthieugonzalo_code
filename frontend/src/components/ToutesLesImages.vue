@@ -2,12 +2,11 @@
   <div>
     <div class="socialContainer">
         <div class="blocContainer">
-            <input type="file" @change="onFileSelected" accept="image/*">
-            <button v-on:click="$refs.fileInput.click()">Ajouter une photo</button>
-            <div style="display: none">{{ selectedFile.name }}</div>
+            <input type="file">
+            <button v-on:click="createArticle()">Ajouter une photo</button>
         </div>
     </div>
-    <Postimage/>
+    <PostImage/>
   </div>
 </template>
 
@@ -20,23 +19,31 @@ export default {
   component: {
     PostImage,
   },
+  data() {
+    return {
+      selectedFile: "",
+    }
+  },
   methods:{
-    click() {
+    createArticle() {
       const user = JSON.parse(localStorage.getItem("user"));
-        axios({
-          method: "GET",
-          url: "http://localhost:3000/api/articles",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + user.token,
-          },
-        })
-          .then((response) => (this.articles = response.data))
-          .catch((error) => console.log(error));
-    },
+      const myForm = new FormData();
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + user.token,
+        },
+      };
+      myForm.append("userId", user.userId);
+      myForm.append("text", this.text);
+      myForm.append("imageUrl", this.selectedFile);
 
-    onFileSelected(event) {
-      this.selectedFile = event.target.files[0];
+      axios
+        .post("http://localhost:3000/api/articles", myForm, config)
+        .then(() => {
+          location.reload();
+        })
+        .catch((error) => console.log(error));
     },
   }
 }

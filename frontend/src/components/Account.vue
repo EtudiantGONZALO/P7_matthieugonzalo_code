@@ -47,18 +47,18 @@ export default {
         },
 
         supprimer() {
-            //Suppression un compte
-            const user = JSON.parse(localStorage.getItem("user"));
-            let header = {
-                headers: {
-                Authorization: "Bearer " + user.token,
-                },
-            };
-            axios
-                .delete("http://localhost:3000/api/auth/users/" + this.user, header)
-                .then(() => location.reload())
-                .catch((error) => console.log(error));
+          //Suppression d'un utilisateur
+          const user = JSON.parse(localStorage.getItem("user"));
+          let header = {
+            headers: {
+              Authorization: "Bearer " + user.token,
             },
+          };
+          axios
+            .delete("http://localhost:3000/api/auth/users/" + this.user.id, header)
+            .then(() => ((location.href = "/"), localStorage.removeItem("user")))
+            .catch((error) => console.log(error));
+        },
     }
 }
 </script>

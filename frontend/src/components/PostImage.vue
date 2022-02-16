@@ -1,12 +1,12 @@
 <template>
     <div>
-        <Postimage class="socialContainer">
+        <PostImage class="socialContainer">
             <div v-for="(image, i) in images" :key="i" class="blocArticleContainer">
                 <div class="userStyle"> {{ images[i].user.username }} </div>
                 <img class="imageStyle">
                 <div class="finArticle"></div>
             </div>
-        </Postimage>
+        </PostImage>
     </div>
 </template>
 

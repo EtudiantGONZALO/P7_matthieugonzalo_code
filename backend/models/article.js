@@ -7,7 +7,7 @@ const Article = sequelize.define('Article', {
         type: DataTypes.INTEGER(11),
         allowNull: false
     },
-    description: {
+    text: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {

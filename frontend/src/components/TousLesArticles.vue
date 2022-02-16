@@ -2,8 +2,8 @@
 <div>
   <div class="socialContainer">
     <div class="blocContainer flexColumn">
-      <textarea type="article" class="sizeInput" placeholder="Ecrivez ce que vous voulez publier" v-model="description" rows="12" @input="check"/>
-      <button class="btnStyle marginTop" v-on:click="createArticle()" type="submit" :disabled="isDisabled"> Publier </button>
+      <textarea type="article" class="sizeInput" placeholder="Ecrivez ce que vous voulez publier" v-model="text" rows="12"/>
+      <button class="btnStyle marginTop" @click="createArticle()"> Publier </button>
     </div>
   </div>
   <Article/>
@@ -21,13 +21,13 @@ export default {
   },
   data() {
       return {  
-          description: "",
-          isDisabled: true,
+          text: "",
       };
   },
   mounted() {},
   methods: {
     createArticle() {
+      console.log('on a cliqué');
       const user = JSON.parse(localStorage.getItem("user"));
       const myForm = new FormData();
       const config = {
@@ -37,7 +37,7 @@ export default {
         },
       };
       myForm.append("userId", user.userId);
-      myForm.append("text", this.description);
+      myForm.append("text", this.text);
 
       axios
         .post("http://localhost:3000/api/articles", myForm, config)
