@@ -2,7 +2,6 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Article = require('../models/article');
-const Comment = require('../models/comment');
 const complexity = require('complexity');
 
 const options = {
@@ -75,12 +74,6 @@ exports.login = (req, res, next) => {
 
 }
 
-//Récupération de tous les utilisateurs
-exports.GetAllUsers = (req, res, next) => {
-    User.findAll()
-        .then(users => res.status(200).json(users))
-        .catch(error => res.status(400).json({ error }));
-}
 
 //Récupération d'un utilisateur par id
 exports.getOneUser = (req, res, next) => {
@@ -112,12 +105,6 @@ exports.deleteUser = (req, res, next) => {
     console.log('text valide');
     //Suppression des articles créés par cet utilisateur
     Article.destroy({
-        where: {
-            userId: req.params.id
-        }
-    })
-    //Suppression des commentaires créés par cet utilisateur
-    Comment.destroy({
         where: {
             userId: req.params.id
         }

@@ -1,6 +1,5 @@
 const Article = require('../models/article');
 const User = require('../models/user');
-const Comment = require('../models/comment');
 const fs = require('fs');
 
 
@@ -29,16 +28,6 @@ exports.createArticle = (req, res, next) => {
     }
 
 
-}
-
-//Récupération d'un post spécifique par id
-exports.getOneArticle = (req, res, next) => {
-    Article.findOne({
-        where: { id: req.params.id },
-        include: [{ model: User, as: 'user' }],
-    })
-        .then(article => res.status(200).json(article))
-        .catch(error => res.status(404).json({ error }));
 }
 
 //Récupération de tous les posts

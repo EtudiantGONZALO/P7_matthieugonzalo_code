@@ -3,22 +3,16 @@ import VueRouter from 'vue-router';
 import Home from "../components/Home.vue";
 import Signup from "../components/Inscription.vue";
 import Login from "../components/Connexion.vue";
-import PostImage from "../components/PostImage.vue";
-import PostArticle from "../components/PostArticle.vue";
 import Account from "../components/Account.vue";
-import ToutesLesImages from "../components/ToutesLesImages.vue";
-import TousLesArticles from "../components/TousLesArticles.vue"
+import Article from "../components/Article.vue";
 
 Vue.use(VueRouter)
 
 const routes = [
     { path: '/home', component: Home },
-    { path: '/touslesarticles', component: TousLesArticles },
-    { path: '/touteslesimages', component: ToutesLesImages },
     { path: '/', component: Signup },
     { path: '/login', component: Login },
-    { path: '/postarticle', component: PostArticle },
-    { path: '/postimage', component: PostImage },
+    { path: '/article', component: Article },
     { path: '/account', component: Account },
   ]
   

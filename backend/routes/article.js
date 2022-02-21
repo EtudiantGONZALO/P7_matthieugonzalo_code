@@ -12,7 +12,6 @@ const multer = require('../middleware/multer-config');
 //Routes vers /articles/
 router.post('/', auth, multer, articleCtrl.createArticle);
 router.get('/', auth, articleCtrl.getAllArticles);
-router.get('/:id', articleCtrl.getOneArticle);
 
 //export du router
 module.exports = router;

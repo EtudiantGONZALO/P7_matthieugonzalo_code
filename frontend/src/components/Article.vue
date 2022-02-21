@@ -1,24 +1,28 @@
 <template>
     <div>
-        <PostImage class="socialContainer">
-            <div v-for="(image, i) in images" :key="i" class="blocArticleContainer">
-                <div class="userStyle"> {{ images[i].user.username }} </div>
-                <img class="imageStyle">
+        <div class="socialContainer">
+            <div class="blocArticleContainer">
+                <div class="userStyle"> {{ user.username }} </div>
+                <p> {{ articles.text }} </p>
+                <img class="sizeImg" :src="articles.imageUrl" />
                 <div class="finArticle"></div>
             </div>
-        </PostImage>
+        </div>
     </div>
 </template>
 
 <script>
 
 export default {
-    name: 'PostImage',
-    
-    mounted() {
-        this.$router.push("/touteslesimages");
+  name: 'Article',
+  data: function () {
+    return {
+      articles: String,
+      users: String,
     }
+  },
 }
+
 </script>
 
 <style>
@@ -48,9 +52,10 @@ export default {
   border-bottom: 2px solid gold;
 }
 
-.imageStyle {
+.sizeImg {
   height: 150px;
   width: 150px;
+  object-fit: cover;
 }
 
 .finArticle {
@@ -58,5 +63,6 @@ export default {
   height: 20px;
   border-bottom: 2px solid gold;
 }
+
 
 </style>
