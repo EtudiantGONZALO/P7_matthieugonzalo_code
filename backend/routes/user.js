@@ -6,7 +6,7 @@ const router = express.Router();
 const userCtrl = require('../controllers/user');
 const isAdmin = require('../middleware/isAdmin');
 
-//routes vers /groupomaniafriend/auth/
+//routes vers
 router.post('/signup', userCtrl.signup);
 router.delete('/users/:id', isAdmin, userCtrl.deleteUser);
 router.get('/users/:id', userCtrl.getOneUser);

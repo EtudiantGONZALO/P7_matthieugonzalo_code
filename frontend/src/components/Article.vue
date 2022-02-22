@@ -2,7 +2,7 @@
     <div>
         <div class="socialContainer">
             <div class="blocArticleContainer">
-                <div class="userStyle"> {{ user.username }} </div>
+                <div class="userStyle"> {{ articles.user.username }} </div>
                 <p> {{ articles.text }} </p>
                 <img class="sizeImg" :src="articles.imageUrl" />
                 <div class="finArticle"></div>
@@ -12,13 +12,20 @@
 </template>
 
 <script>
+import Home from "../components/Home.vue";
 
 export default {
   name: 'Article',
-  data: function () {
+  component: {
+    Home,
+  },
+  data() {
     return {
       articles: String,
-      users: String,
+      user: String,
+      Home: "Home",
+      text: "",
+      selectedFile: "",
     }
   },
 }

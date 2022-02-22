@@ -3,18 +3,20 @@
   <div class="socialContainer">
     <div class="blocContainer flexColumn">
       <textarea type="article" class="sizeInput" placeholder="Ecrivez ce que vous voulez publier" v-model="text" rows="12"/>
-      <input type="file" class="marginBottom">
-      {{ selectedFile.name }}
+      <input type="file" class="marginBottom" @change="onFileSelected">
+      <div style="display:none">{{ selectedFile.name }}</div>
       <button class="btnStyle" @click="createArticle()"> Publier </button>
     </div>
   </div>
-  <Article v-for="(article, index) in articles" :key="index" :id="article.id" :text="article.text" :imageUrl="article.imageUrl"/>
+  <div v-for="(article, index) in articles" :key="index">
+    <Article v-bind:is="Article" :id="article.id" :text="article.text" :username="article.user.username" :imageUrl="article.imageUrl"/>
+  </div>
 </div>
 </template>
 
 <script>
 import axios from 'axios';
-import Article from './Article.vue';
+import Article from '../components/Article.vue';
 
 export default {
   name: 'Home',
@@ -24,9 +26,13 @@ export default {
   data() {
     return {
       articles: String,
-      users: String,
+      user: String,
+      text: "",
+      selectedFile: "",
+      Article: "Article",
     } 
   },
+  
   methods: {
     //fonction de creation de l'article
       createArticle() {
@@ -48,22 +54,25 @@ export default {
             location.reload();
           })
           .catch((error) => console.log(error));
-      }
+      },
+      onFileSelected(event) {
+      this.selectedFile = event.target.files[0];
+      },
   },
 
+  //Affichage de tous les articles
   mounted() {
-    //Affichage de tous les articles
-      const user = JSON.parse(localStorage.getItem("user"));
-      axios({
-        method: "GET",
-        url: "http://localhost:3000/api/articles",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + user.token,
-        },
-      })
-        .then((response) => (this.articles = response.data))
-        .catch((error) => console.log(error));
+    const user = JSON.parse(localStorage.getItem("user"));
+    axios({
+      method: "GET",
+      url: "http://localhost:3000/api/articles",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + user.token,
+      },
+    })
+      .then((response) => (this.articles = response.data))
+      .catch((error) => console.log(error));
   },
 }
 
