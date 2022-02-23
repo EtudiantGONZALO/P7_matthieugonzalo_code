@@ -88,7 +88,6 @@ export default {
   display: flex;  
   justify-content: center;
   width: 100%;
-  height: 100%;
   background-color: grey;
 }
 
@@ -97,7 +96,6 @@ export default {
   border: 10px solid black;
   text-align: center;
   width: 70%;
-  height: 100%;
 }
 
 .flexColumn {
@@ -174,11 +172,6 @@ export default {
   border-bottom: 2px solid gold;
 }
 
-.backgroundBtnPublier {
-  background-color: grey;
-  padding-bottom: 40px;
-}
-
 .textStyle {
   margin: 10px 0 10px 0;
 }
@@ -187,6 +180,7 @@ export default {
   width: 70%;
   height: 50%;
   outline: none;
+  margin: 10px 0;
 }
 
 .marginBottom {

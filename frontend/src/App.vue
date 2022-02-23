@@ -11,35 +11,16 @@
         <router-link to="/account" class="textDecoration">Profil</router-link>
       </div>
     </div>
-    <!--Login, Connexion   -->
-    <!--Home :
-        Publier  --
-        <div v-for="(article, index) in articles" :key="index">
-          <Article :id="article.id" :text="article.text" />
-        </div>
-
-        
-
-        data: articles: [{id: '5465465', text:'coucou', date: ''}, {}],
-        mounted() {
-          getAllArticles() {
-            axios.getAllArticles().then((response => {this.articles = response})
-          }
-        }
-       -->
+    <!--   Login, Connexion   -->
     <router-view/>
     
 </div>
 </template>
 
 <script>
-//import publication from "./components/Publier.vue"
 
 export default {
   name: 'App',
-  //components: {
-    //publication
-  //}
 }
 
 </script>

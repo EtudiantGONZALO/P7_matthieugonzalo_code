@@ -1,6 +1,6 @@
 <template>
-    <div class="socialContainer">
-      <div class="blocContainer">
+    <div class="socialInscriptionContainer">
+      <div class="blocInscriptionContainer">
         <div>
           <h1 class="textStyle"> Email </h1>
           <input type="email" id="email" placeholder="email@exemple.com" v-model="emailValue"/>
@@ -57,7 +57,7 @@ export default {
 
 <style>
 
-.socialContainer {
+.socialInscriptionContainer {
   display: flex;  
   justify-content: center;
   width: 100%;
@@ -66,13 +66,12 @@ export default {
   padding: 10% 0;
 }
 
-.blocContainer {
+.blocInscriptionContainer {
   background-color: lightgrey;
   border: 10px solid black;
   text-align: center;
   width: 70%;
-  height: 100%;
-  padding: 50px 0;
+  padding: 10% 0;
 }
 
 .textStyle {
@@ -124,10 +123,6 @@ export default {
 
 #password {
   margin-bottom: 40px;
-}
-
-#usernameErrorMsg, #passwordErrorMsg, #emailErrorMsg {
-  color: red;
 }
 
 </style>

@@ -1,6 +1,6 @@
 <template>
-    <div class="socialContainer">
-        <div class="blocContainer">
+    <div class="socialProfilContainer">
+        <div class="blocProfilContainer">
             <h1 class="textStyle"> Email </h1>
             <p> {{ this.user.email }} </p>
             <h1 class="textStyle"> Username </h1>
@@ -65,22 +65,20 @@ export default {
 
 <style>
 
-.socialContainer {
+.socialProfilContainer {
   display: flex;  
   justify-content: center;
   width: 100%;
-  height: 100%;
   background-color: grey;
   padding: 10% 0;
 }
 
-.blocContainer {
+.blocProfilContainer {
   background-color: lightgrey;
   border: 10px solid black;
   text-align: center;
   width: 70%;
-  height: 100%;
-  padding: 50px 0;
+  padding: 10% 0;
 }
 
 .textStyle {
