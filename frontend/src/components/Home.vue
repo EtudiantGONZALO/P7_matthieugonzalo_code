@@ -9,7 +9,9 @@
     </div>
   </div>
   <div v-for="(article, index) in articles" :key="index">
-    <Article v-bind:is="Article" :id="article.id" :text="article.text" :username="article.user.username" :imageUrl="article.imageUrl"/>
+    <Article :text="article.text" 
+             :username="article.user.username" 
+             :imageUrl="article.imageUrl"/>
   </div>
 </div>
 </template>
@@ -20,21 +22,20 @@ import Article from '../components/Article.vue';
 
 export default {
   name: 'Home',
-  component: {
+  components: {
     Article,
   },
   data() {
     return {
-      articles: String,
+      articles: [],
       user: String,
       text: "",
       selectedFile: "",
-      Article: "Article",
     } 
   },
   
   methods: {
-    //fonction de creation de l'article
+    //fonction de creation de l'article    
       createArticle() {
         const user = JSON.parse(localStorage.getItem("user"));
         const myForm = new FormData();
@@ -51,28 +52,31 @@ export default {
         axios
           .post("http://localhost:3000/api/articles", myForm, config)
           .then(() => {
-            location.reload();
+            this.getAllArticles();
           })
           .catch((error) => console.log(error));
       },
       onFileSelected(event) {
-      this.selectedFile = event.target.files[0];
+        this.selectedFile = event.target.files[0];
+      },
+      getAllArticles() {
+        const user = JSON.parse(localStorage.getItem("user"));
+        axios({
+          method: "GET",
+          url: "http://localhost:3000/api/articles",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + user.token,
+          },
+        })
+          .then((response) => (this.articles = response.data))
+          .catch((error) => console.log(error));
       },
   },
 
   //Affichage de tous les articles
   mounted() {
-    const user = JSON.parse(localStorage.getItem("user"));
-    axios({
-      method: "GET",
-      url: "http://localhost:3000/api/articles",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + user.token,
-      },
-    })
-      .then((response) => (this.articles = response.data))
-      .catch((error) => console.log(error));
+    this.getAllArticles();
   },
 }
 

@@ -2,9 +2,9 @@
     <div>
         <div class="socialContainer">
             <div class="blocArticleContainer">
-                <div class="userStyle"> {{ articles.user.username }} </div>
-                <p> {{ articles.text }} </p>
-                <img class="sizeImg" :src="articles.imageUrl" />
+                <div class="userStyle"> {{ username }} </div>
+                <p> {{ text }} </p>
+                <img v-if="imageUrl" class="sizeImg" :src="imageUrl" />
                 <div class="finArticle"></div>
             </div>
         </div>
@@ -12,24 +12,20 @@
 </template>
 
 <script>
-import Home from "../components/Home.vue";
-
 export default {
   name: 'Article',
-  component: {
-    Home,
-  },
-  data() {
-    return {
-      articles: String,
-      user: String,
-      Home: "Home",
-      text: "",
-      selectedFile: "",
-    }
-  },
+  props: {
+    text: {
+      type: String,
+    },
+    username: {
+      type: String,
+    },
+    imageUrl: {
+      type: String,
+    },  
+  }    
 }
-
 </script>
 
 <style>

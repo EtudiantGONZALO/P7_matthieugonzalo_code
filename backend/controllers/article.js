@@ -22,7 +22,7 @@ exports.createArticle = (req, res, next) => {
         }
         function saveArticle(article) {
             article.save()
-                .then(() => res.status(201).json({ message: 'Article créé !' }))
+                .then(() => res.status(201).json({ message: 'Article créé !'}))
                 .catch(error => res.status(400).json({ error }))
         }
     }
