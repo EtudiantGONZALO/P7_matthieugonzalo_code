@@ -56,9 +56,11 @@ export default {
           })
           .catch((error) => console.log(error));
       },
+
       onFileSelected(event) {
         this.selectedFile = event.target.files[0];
       },
+      
       getAllArticles() {
         const user = JSON.parse(localStorage.getItem("user"));
         axios({

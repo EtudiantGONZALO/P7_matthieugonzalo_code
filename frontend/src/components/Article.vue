@@ -5,9 +5,6 @@
                 <div class="userStyle"> {{ username }} </div>
                 <p> {{ text }} </p>
                 <img v-if="imageUrl" class="sizeImg" :src="imageUrl" />
-                <div class="flexEnd">
-                  <button> SUPPRIMER </button>
-                </div>
                 <div class="finArticle"></div>
             </div>
         </div>
