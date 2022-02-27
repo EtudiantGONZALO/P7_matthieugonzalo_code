@@ -87,19 +87,6 @@ exports.getOneUser = (req, res, next) => {
 
 }
 
-//Récupération d'un utilisateur par nom d'utilisateur
-exports.getOneUserByUsername = (req, res, next) => {
-    User.findOne({
-        where: {
-            username: req.params.username
-        }
-    })
-        .then(user => res.status(200).json(user))
-        .catch(error => res.status(400).json({ error }));
-
-}
-
-
 //Suppression d'un utilisateur
 exports.deleteUser = (req, res, next) => {
     console.log('text valide');

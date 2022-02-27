@@ -6,6 +6,7 @@
             <h1 class="textStyle"> Username </h1>
             <p> {{ this.user.username }} </p>
             <button class="btnStyle" v-on:click="supprimer" type="button"> Supprimer compte </button>
+            <button class="btnStyle" v-on:click="deconnecter()" :emailValue="this.user.email"> Deconnexion </button>
         </div>
     </div>
 </template>
@@ -33,6 +34,7 @@ export default {
     },
 
     methods: {
+        //affichage de l'utilisateur
         displayUsers() {
             const user = JSON.parse(localStorage.getItem("user"));
             let header = {
@@ -46,8 +48,8 @@ export default {
                 .catch((error) => console.log(error));
         },
 
+        //Suppression d'un utilisateur
         supprimer() {
-          //Suppression d'un utilisateur
           const user = JSON.parse(localStorage.getItem("user"));
           let header = {
             headers: {
@@ -58,6 +60,22 @@ export default {
             .delete("http://localhost:3000/api/auth/users/" + this.user.id, header)
             .then(() => ((location.href = "/"), localStorage.removeItem("user")))
             .catch((error) => console.log(error));
+        },
+
+        //deconnexion du compte
+        deconnecter() {
+          axios({
+            method: "GET",
+            url: "http://localhost:3000/api/auth/users" + "/userId",
+            headers: { "Content-Type": "application/json" },
+          })
+          .then(() => {
+            
+              localStorage.removeItem("user");
+              this.$router.push("/");
+            }
+          )
+          .catch((error) => console.log(error));
         },
     }
 }
