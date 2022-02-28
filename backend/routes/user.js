@@ -11,6 +11,7 @@ router.post('/signup', userCtrl.signup);
 router.delete('/users/:id', isAdmin, userCtrl.deleteUser);
 router.get('/users/:id', userCtrl.getOneUser);
 router.post('/login', userCtrl.login);
+router.get('/users', isAdmin, userCtrl.GetAllUsers);
 
 //export du router
 module.exports = router;

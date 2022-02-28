@@ -1,14 +1,29 @@
 <template>
+<div>
     <div class="socialProfilContainer">
         <div class="blocProfilContainer">
             <h1 class="textStyle"> Email </h1>
             <p> {{ this.user.email }} </p>
             <h1 class="textStyle"> Username </h1>
             <p> {{ this.user.username }} </p>
-            <button class="btnStyle" v-on:click="supprimer" type="button"> Supprimer compte </button>
-            <button class="btnStyle" v-on:click="deconnecter()" :emailValue="this.user.email"> Deconnexion </button>
+            <div style="display: flex">
+              <button class="btnStyle" v-on:click="supprimer" type="button"> Supprimer compte </button>
+              <button class="btnStyle" v-on:click="deconnecter()" :emailValue="this.user.email"> Deconnexion </button>
+            </div>
         </div>
     </div>
+    <div class="socialProfilContainer">
+        <div class="blocProfilContainer">
+            <div v-for="(user, index) in users" :key="index">
+              <h2 class="textStyle2"> Email </h2>
+              <p> {{ user.email }} </p>
+              <h2 class="textStyle2"> Username </h2>
+              <p> {{ user.username }} </p>
+              <div class="finArticle"></div>
+            </div>
+        </div>
+    </div>
+</div>
 </template>
 
 <script>
@@ -20,17 +35,8 @@ export default {
         return {
         userId: String,
         user: String,
+        users: [],
         };
-    },
-    mounted() {
-        
-        //On récupère les informations de l'utilisateur actuellement connecté
-        const user = JSON.parse(localStorage.getItem("user"));
-        this.userId = user.token;
-        axios
-            .get("http://localhost:3000/api/auth/users/" + user.userId)
-            .then((response) => (this.user = response.data))
-            .catch((error) => console.log(error));
     },
 
     methods: {
@@ -64,20 +70,37 @@ export default {
 
         //deconnexion du compte
         deconnecter() {
-          axios({
-            method: "GET",
-            url: "http://localhost:3000/api/auth/users" + "/userId",
-            headers: { "Content-Type": "application/json" },
-          })
-          .then(() => {
-            
               localStorage.removeItem("user");
               this.$router.push("/");
-            }
-          )
-          .catch((error) => console.log(error));
         },
-    }
+
+        //obtenir tous les utilisateurs
+        getAllUsers(user) {
+          axios({
+            method: "GET",
+            url: "http://localhost:3000/api/auth/users",
+            headers: {
+            Authorization: "Bearer " + user.token,
+            },
+          })
+            .then((response) => (this.users = response.data))
+            .catch((error) => console.log(error));
+        }
+    },
+
+    mounted() {
+        
+        //On récupère les informations de l'utilisateur actuellement connecté
+        const user = JSON.parse(localStorage.getItem("user"));
+        this.userId = user.token;
+        axios
+            .get("http://localhost:3000/api/auth/users/" + user.userId)
+            .then((response) => (this.user = response.data))
+            .catch((error) => console.log(error));
+    
+        //on appel la fonction getAllUsers et l'on met comme attribut la constante user
+        this.getAllUsers(user);
+    },
 }
 </script>
 
@@ -88,7 +111,7 @@ export default {
   justify-content: center;
   width: 100%;
   background-color: grey;
-  padding: 10% 0;
+  padding: 40px 0;
 }
 
 .blocProfilContainer {
@@ -96,11 +119,15 @@ export default {
   border: 10px solid black;
   text-align: center;
   width: 70%;
-  padding: 10% 0;
 }
 
 .textStyle {
-  margin: 10px 0 10px 0;
+  margin: 10px 10px;
+}
+
+.textStyle2 {
+  margin: 10px 10px;
+  font-size: 16px;
 }
 
 .btnStyle
@@ -145,5 +172,11 @@ export default {
     z-index: -1;
     transition: opacity 500ms;
   }
+
+.finArticle {
+  width: 100%;
+  height: 20px;
+  border-bottom: 2px solid black;
+}
 
 </style>
