@@ -54,8 +54,8 @@ export default {
 }
 
 .sizeImg {
-  height: 150px;
-  width: 150px;
+  height: 400px;
+  width: 400px;
   object-fit: cover;
 }
 
