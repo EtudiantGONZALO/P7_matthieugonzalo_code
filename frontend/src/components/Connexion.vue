@@ -3,6 +3,7 @@
       <div class="blocConnexionContainer">
         <h1 class="textStyle"> Email </h1>
         <input type="email" id="email" name="user_email" placeholder="email@exemple.com" v-model="emailValue"/>
+        <p id="pErrorEmailMsg"></p>
         <h1 class="textStyle"> Password </h1>
         <input type="text" id="password" name="user_password" placeholder="********" class="marginBottom" v-model="passwordValue">
         <div>
@@ -25,20 +26,27 @@ export default {
   },
   methods: {
     connecter() {
-      axios({
-        method: "POST",
-        url: "http://localhost:3000/api/auth/login",
-        headers: { "Content-Type": "application/json" },
-        data: { email: this.emailValue, password: this.passwordValue },
-      })
-      .then((response) => {
-        if (response.data.token) {
-          //On ajoute le token généré au localStorage
-          localStorage.setItem("user", JSON.stringify(response.data));
-          this.$router.push("/home");
-        }
-      })
-      .catch((error) => console.log(error));
+      var masqueEmail = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/;
+      if (masqueEmail.test(this.emailValue)) {
+        axios({
+          method: "POST",
+          url: "http://localhost:3000/api/auth/login",
+          headers: { "Content-Type": "application/json" },
+          data: { email: this.emailValue, password: this.passwordValue },
+        })
+        .then((response) => {
+          if (response.data.token) {
+            //On ajoute le token généré au localStorage
+            localStorage.setItem("user", JSON.stringify(response.data));
+            this.$router.push("/home");
+          }
+        })
+        .catch((error) => console.log(error));
+      } else {
+         var pErrorEmailMsg = document.querySelector('#pErrorEmailMsg');
+         pErrorEmailMsg.innerText = "Votre Email doit etre valide";
+         return false;
+      }
     },
   }, 
 }
@@ -114,5 +122,9 @@ export default {
 .marginBottom {
   margin-bottom: 40px;
 }
+
+#pErrorEmailMsg {
+  color: red;
+} 
 
 </style>

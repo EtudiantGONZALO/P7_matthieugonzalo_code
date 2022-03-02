@@ -11,7 +11,10 @@
   <div v-for="(article, index) in articles" :key="index">
     <Article :text="article.text" 
              :username="article.user.username" 
-             :imageUrl="article.imageUrl"/>
+             :imageUrl="article.imageUrl"
+             :articleUserId="article.userId"
+             :articleId="article.id"
+             @deletearticle="getAllArticles()"/>
   </div>
 </div>
 </template>
@@ -31,6 +34,8 @@ export default {
       user: String,
       text: "",
       selectedFile: "",
+      isOwnerModal: false,
+      articleUserId: null,
     } 
   },
   
@@ -74,12 +79,40 @@ export default {
           .then((response) => (this.articles = response.data))
           .catch((error) => console.log(error));
       },
+
+      isOwner() {
+      const user = JSON.parse(localStorage.getItem("user"));
+      axios
+        .get("http://localhost:3000/api/articles/" + user.userId)
+        .then(
+          (response) => (
+            (this.text = response.data.text),
+            (this.articleUserId = response.data.userId),
+            this.isOwnerCheck(this.articleUserId)
+          )
+        )
+        .catch((error) => console.log(error));
+      },
+
+      isOwnerCheck() {
+        //On vérifie que l'utilisateur est propriétaire du post ou s'il est un administrateur
+        const user = JSON.parse(localStorage.getItem("user"));
+        this.userId = user;
+
+        if (this.userId.userId == this.articleUserId || this.userId.isAdmin == true) {
+          this.isOwnerModal = true;
+        } else {
+          this.isOwnerModal = false;
+        }
+      },
   },
 
   //Affichage de tous les articles
   mounted() {
     this.getAllArticles();
+    this.isOwner();
   },
+  
 }
 
 </script>

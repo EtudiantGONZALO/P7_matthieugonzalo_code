@@ -5,6 +5,10 @@
                 <div class="userStyle"> {{ username }} </div>
                 <p> {{ text }} </p>
                 <img v-if="imageUrl" class="sizeImg" :src="imageUrl" />
+                <DeleteButton :userId="userId" 
+                              :articleId="articleId"
+                              v-show="userId === articleUserId"
+                              @delete="deleteevent()"/>
                 <div class="finArticle"></div>
             </div>
         </div>
@@ -12,8 +16,18 @@
 </template>
 
 <script>
+import DeleteButton from "../components/DeleteArticle.vue";
+
 export default {
   name: 'Article',
+  components: {
+    DeleteButton
+  },
+  data() {
+    return { 
+      userId: undefined,
+    };
+  },
   props: {
     text: {
       type: String,
@@ -23,8 +37,22 @@ export default {
     },
     imageUrl: {
       type: String,
-    },  
-  }    
+    },
+    articleUserId: {
+      type: String,
+    },
+    articleId: {
+      type: String,
+    }  
+  },
+  methods: {
+    deleteevent() {
+      this.$emit('deletearticle');
+    }
+  },
+  mounted() {
+    this.userId = JSON.parse(localStorage.getItem("user")).userId;
+  }   
 }
 </script>
 

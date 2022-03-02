@@ -4,10 +4,12 @@
         <div>
           <h1 class="textStyle"> Email </h1>
           <input type="email" id="email" placeholder="email@exemple.com" v-model="emailValue"/>
+          <p id="pErrorEmailMsg"></p>
         </div>
         <div>
           <h1 class="textStyle"> Username </h1>
           <input type="text" id="username" placeholder="Utilisateur01" v-model="usernameValue"/>
+          <p id="pErrorUsernameMsg"></p>
         </div>
         <div>
           <h1 class="textStyle"> Password </h1>
@@ -36,20 +38,32 @@ export default {
   methods: {
 
     creerCompte() {
-      axios({
-        method: "POST",
-        url: "http://localhost:3000/api/auth/signup",
-        data: {
-          username: this.usernameValue,
-          email: this.emailValue,
-          password: this.passwordValue,
-        },
-        headers: { "Content-Type": "application/json" },
-      })
-        .then(() => {
-          this.$router.push("/login");
+      var masqueChiffreCaractereUserName = /^[a-zA-Z- ']+$/g;
+      var masqueEmail = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/;
+      if (masqueChiffreCaractereUserName.test(this.usernameValue) && masqueEmail.test(this.emailValue)) {
+        axios({
+          method: "POST",
+          url: "http://localhost:3000/api/auth/signup",
+          data: {
+            username: this.usernameValue,
+            email: this.emailValue,
+            password: this.passwordValue,
+          },
+          headers: { "Content-Type": "application/json" },
         })
-        .catch((error) => (console.log(error), (this.message = true)));
+          .then(() => {
+              this.$router.push("/login");
+            
+          })
+          .catch((error) => (console.log(error), (this.message = true)));
+      } else {
+        var pErrorEmailMsg = document.querySelector('#pErrorEmailMsg');
+        var pErrorUsernameMsg = document.querySelector('#pErrorUsernameMsg');
+
+        pErrorUsernameMsg.innerText = "Votre Username ne doit pas comporter de caractère interdit";
+        pErrorEmailMsg.innerText = "Votre Email doit etre valide";
+        return false;
+      }
     },
   }
 }
@@ -120,6 +134,10 @@ export default {
     z-index: -1;
     transition: opacity 500ms;
   }
+
+#pErrorEmailMsg, #pErrorUsernameMsg {
+  color: red;
+} 
 
 #password {
   margin-bottom: 40px;

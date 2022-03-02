@@ -37,3 +37,15 @@ exports.getAllArticles = (req, res, next) => {
         .then(articles => res.status(201).json(articles))
         .catch(error => res.status(400).json({ error }));
 }
+
+//Suppression d'un article
+exports.deleteArticle = (req, res, next) => {
+    Article.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+        .then(() => res.status(200).json({ message: 'Objet supprimé !' }))
+        .catch(error => res.status(400).json({ error }));
+
+};
