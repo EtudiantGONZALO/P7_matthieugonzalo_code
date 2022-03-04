@@ -80,20 +80,6 @@ export default {
           .catch((error) => console.log(error));
       },
 
-      isOwner() {
-      const user = JSON.parse(localStorage.getItem("user"));
-      axios
-        .get("http://localhost:3000/api/articles/" + user.userId)
-        .then(
-          (response) => (
-            (this.text = response.data.text),
-            (this.articleUserId = response.data.userId),
-            this.isOwnerCheck(this.articleUserId)
-          )
-        )
-        .catch((error) => console.log(error));
-      },
-
       isOwnerCheck() {
         //On vérifie que l'utilisateur est propriétaire du post ou s'il est un administrateur
         const user = JSON.parse(localStorage.getItem("user"));
@@ -110,7 +96,6 @@ export default {
   //Affichage de tous les articles
   mounted() {
     this.getAllArticles();
-    this.isOwner();
   },
   
 }
@@ -140,23 +125,6 @@ export default {
   align-items: center;
 }
 
-.btnLike {
-  transition: all 400ms;
-}
-
-.btnLike:hover {
-  background-color: #86fc00;
-  color: white;
-}
-
-.btnDislike {
-  transition: all 400ms;
-}
-
-.btnDislike:hover {
-  background-color: tomato;
-  color: white;
-}
 
 .btnStyle
 {
@@ -168,7 +136,7 @@ export default {
     margin: auto;
     color: white;
     text-decoration: none;
-    background: linear-gradient( #0065FC, #083eee);
+    background: linear-gradient( maroon, tomato);
     border-radius: 20px;
     margin-bottom: 40px;
     box-shadow: 3px 3px 3px grey;
@@ -195,7 +163,7 @@ export default {
     bottom: 0;
     left: 0;
     border-radius: 20px;
-    background: linear-gradient(darken(#0065FC, 8) 0%, lighten(#08adee, 4) 100%);
+    background: linear-gradient(darken( maroon, 8) 0%, lighten(#ff6347, 4) 100%);
     opacity: 0;
     z-index: -1;
     transition: opacity 500ms;
@@ -220,6 +188,12 @@ export default {
 
 .marginBottom {
   margin-bottom: 40px;
+}
+
+@media screen and (max-width: 730px) {
+  .marginBottom {
+    width: 200px;
+  }
 }
 
 </style>

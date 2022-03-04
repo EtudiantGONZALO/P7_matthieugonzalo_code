@@ -1,4 +1,4 @@
-//crétion du router
+//création du router
 const express = require('express');
 const router = express.Router();
 

@@ -39,10 +39,10 @@ export default {
       type: String,
     },
     articleUserId: {
-      type: String,
+      type: Number,
     },
     articleId: {
-      type: String,
+      type: Number,
     }  
   },
   methods: {
@@ -77,7 +77,7 @@ export default {
   height: 20px;
   font-size: 17px;
   color: white;
-  background-color: #0065FC;
+  background-color: maroon;
   border-bottom: 2px solid gold;
 }
 
@@ -98,6 +98,14 @@ export default {
   width: 100%;
   height: 20px;
   border-bottom: 2px solid gold;
+}
+
+@media screen and (max-width: 730px) {
+  .sizeImg {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+  }
 }
 
 

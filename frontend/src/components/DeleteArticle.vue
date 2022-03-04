@@ -14,7 +14,7 @@ export default {
   },
   props: {
     articleId: {
-      type: String,
+      type: Number,
     }
   },
   methods: {
@@ -44,6 +44,7 @@ export default {
   justify-content: flex-end;
   align-items: flex-end;
   margin-right: 10px;
+  background-color: tomato;
 }
 
 </style>

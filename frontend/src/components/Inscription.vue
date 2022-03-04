@@ -102,7 +102,7 @@ export default {
     margin: auto;
     color: white;
     text-decoration: none;
-    background: linear-gradient( #0065FC, #083eee);
+    background: linear-gradient( maroon, tomato);
     border-radius: 20px;
     margin-bottom: 40px;
     box-shadow: 3px 3px 3px grey;
@@ -129,7 +129,7 @@ export default {
     bottom: 0;
     left: 0;
     border-radius: 20px;
-    background: linear-gradient(darken(#0065FC, 8) 0%, lighten(#08adee, 4) 100%);
+    background: linear-gradient(darken(maroon, 8) 0%, lighten(#ff6347, 4) 100%);
     opacity: 0;
     z-index: -1;
     transition: opacity 500ms;

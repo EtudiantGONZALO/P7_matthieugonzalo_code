@@ -36,7 +36,7 @@ body {
 }
 
 .headerColor {
-  background-color: #0065FC;
+  background-color: maroon;
 }
 
 .flexEvenly {
@@ -47,7 +47,7 @@ body {
 }
 
 .dore {
-  background-color: gold;
+  background-color: tomato;
 }
 
 .textDecoration {
