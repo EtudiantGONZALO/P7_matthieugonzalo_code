@@ -76,7 +76,13 @@ export default {
             Authorization: "Bearer " + user.token,
           },
         })
-          .then((response) => (this.articles = response.data))
+          .then((response) => {
+            response.data.forEach((item) => {
+              item.createdAt = new Date(item.createdAt);
+            });
+            response.data =  response.data.sort((a, b) => b.createdAt - a.createdAt);
+            this.articles = response.data
+          })
           .catch((error) => console.log(error));
       },
 

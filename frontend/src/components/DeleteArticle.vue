@@ -41,10 +41,8 @@ export default {
 
 .deleteButton {
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  margin-right: 10px;
-  background-color: tomato;
+  background-color: #2154a2;
+  color: white;
 }
 
 </style>
