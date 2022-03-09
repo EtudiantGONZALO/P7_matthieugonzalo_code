@@ -5,14 +5,14 @@
         <img alt="Vue logo" src="./assets/icon-left-font-monochrome-white.png" class="logo">
       </div>
       <div class="flexEvenly dore">
-        <router-link to="/home" class="textDecoration color">Home</router-link>
-        <router-link to="/" class="textDecoration color">Inscription</router-link>
-        <router-link to="/login" class="textDecoration color">Connexion</router-link>
-        <router-link to="/account" class="textDecoration color">Profil</router-link>
+        <router-link v-if="isLogged" to="/home" class="textDecoration color">Home</router-link>
+        <router-link v-if="!isLogged" to="/" class="textDecoration color">Inscription</router-link>
+        <router-link v-if="!isLogged" to="/login" class="textDecoration color">Connexion</router-link>
+        <router-link v-if="isLogged" to="/account" class="textDecoration color">Profil</router-link>
       </div>
     </div>
     <!--   Login, Connexion   -->
-    <router-view/>
+    <router-view @login-success="isLogged = true" @signout="isLogged = false"/>
     
 </div>
 </template>
@@ -21,6 +21,17 @@
 
 export default {
   name: 'App',
+  data() {
+    return {
+      isLogged: false,
+    };
+  },
+  mounted() {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user !== null) {
+      this.isLogged = true;
+    }
+  }
 }
 
 </script>

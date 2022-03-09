@@ -9,11 +9,11 @@ import Article from "../components/Article.vue";
 Vue.use(VueRouter)
 
 const routes = [
-    { path: '/home', component: Home },
-    { path: '/', component: Signup },
-    { path: '/login', component: Login },
-    { path: '/article/:id', component: Article },
-    { path: '/account', component: Account },
+    { path: '/home', name: 'home', component: Home },
+    { path: '/', name: '', component: Signup },
+    { path: '/login', name: 'login', component: Login },
+    { path: '/article/:id', name: 'article', component: Article },
+    { path: '/account', name: 'account', component: Account },
   ]
   
   // 3. Create the router instance and pass the `routes` option
@@ -25,7 +25,10 @@ const routes = [
   })
 
   router.beforeEach((to, from, next) => {
-    document.title = to.meta.title;
+    if (to.name !== 'login' && to.name !== 'signup') {
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user === null) next('/login');
+    }
     next();
   });
 

@@ -38,6 +38,7 @@ export default {
           if (response.data.token) {
             //On ajoute le token généré au localStorage
             localStorage.setItem("user", JSON.stringify(response.data));
+            this.$emit('login-success');
             this.$router.push("/home");
           }
         })

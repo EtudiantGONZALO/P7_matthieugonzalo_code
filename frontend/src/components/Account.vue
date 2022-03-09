@@ -71,6 +71,7 @@ export default {
         //deconnexion du compte
         deconnecter() {
               localStorage.removeItem("user");
+              this.$emit('signout');
               this.$router.push("/");
         },
 
